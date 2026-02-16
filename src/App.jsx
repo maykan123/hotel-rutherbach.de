@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import Privacy from './pages/Privacy'
 import Impressum from './pages/Impressum'
+import NotFound from './pages/NotFound'
 import CookieBanner from './components/CookieBanner'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="datenschutz" element={<Privacy />} />
           <Route path="impressum" element={<Impressum />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
       <CookieBanner />

@@ -1,24 +1,13 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Users, Bed, Maximize, Check } from 'lucide-react'
+import { X, Users, Bed, Maximize, Check, ExternalLink } from 'lucide-react'
 import { roomsData } from '../data/rooms'
 
 function RoomsSection() {
   const [selectedRoom, setSelectedRoom] = useState(null)
 
-  const scrollToContact = () => {
-    const element = document.getElementById('kontakt')
-    if (element) {
-      const offset = 80
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
-    }
-    setSelectedRoom(null)
-  }
-
   return (
-    <section id="zimmer" className="py-16 sm:py-20 bg-primary-light">
+    <section id="zimmer" className="py-24 sm:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -28,13 +17,13 @@ function RoomsSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
-            Unsere <span className="text-accent">Zimmer</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+            Unsere <span className="text-accent-dark">Zimmer</span>
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto text-base sm:text-lg px-2 sm:px-0">
+          <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg px-2 sm:px-0">
             Wählen Sie aus 10 individuell eingerichteten Zimmern und Apartments. 
             Jedes Zimmer bietet Ihnen den Komfort für einen erholsamen Aufenthalt. 
-            <span className="text-accent block sm:inline mt-2 sm:mt-0">Bei Direktbuchung sparen Sie sich die Buchungsgebühren!</span>
+            <span className="text-accent-dark block sm:inline mt-2 sm:mt-0 font-semibold">Bei Direktbuchung sparen Sie sich die Buchungsgebühren!</span>
           </p>
         </motion.div>
 
@@ -50,7 +39,7 @@ function RoomsSection() {
               className="group cursor-pointer"
               onClick={() => setSelectedRoom(room)}
             >
-              <div className="bg-primary rounded-xl overflow-hidden border border-gray-700 hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:shadow-accent/10">
+              <div className="blue-island-static overflow-hidden hover:border-accent/50 transition-all duration-300 h-full">
                 {/* Image */}
                 <div className="relative h-48 sm:h-48 overflow-hidden">
                   <img
@@ -74,7 +63,7 @@ function RoomsSection() {
 
                 {/* Content */}
                 <div className="p-4">
-                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-accent-dark transition-colors">
                     {room.name}
                   </h3>
                   <p className="text-gray-400 text-sm mb-3 line-clamp-2">
@@ -114,7 +103,7 @@ function RoomsSection() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3 }}
-              className="relative w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto bg-primary rounded-2xl border border-gray-700"
+              className="relative w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto blue-island"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -144,8 +133,8 @@ function RoomsSection() {
                     </h3>
                   </div>
                   <div className="mt-3 sm:mt-0 text-left sm:text-right">
-                    <p className="text-2xl sm:text-3xl font-bold text-accent">{selectedRoom.price} €</p>
-                    <p className="text-gray-400 text-xs sm:text-sm">pro Nacht</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-accent">ab {selectedRoom.price} €</p>
+                    <p className="text-gray-400 text-xs sm:text-sm">{selectedRoom.priceInfo}</p>
                   </div>
                 </div>
 
@@ -153,21 +142,21 @@ function RoomsSection() {
 
                 {/* Details Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6">
-                  <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary-light rounded-lg">
+                  <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
                     <Maximize className="text-accent flex-shrink-0" size={20} />
                     <div>
                       <p className="text-gray-400 text-xs sm:text-sm">Größe</p>
                       <p className="text-white font-semibold text-sm sm:text-base">{selectedRoom.size}</p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary-light rounded-lg">
+                  <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
                     <Users className="text-accent flex-shrink-0" size={20} />
                     <div>
                       <p className="text-gray-400 text-xs sm:text-sm">Max. Gäste</p>
                       <p className="text-white font-semibold text-sm sm:text-base">{selectedRoom.maxGuests} Personen</p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary-light rounded-lg">
+                  <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
                     <Bed className="text-accent flex-shrink-0" size={20} />
                     <div>
                       <p className="text-gray-400 text-xs sm:text-sm">Betten</p>
@@ -183,7 +172,7 @@ function RoomsSection() {
                     {selectedRoom.amenities.map((amenity) => (
                       <span
                         key={amenity}
-                        className="flex items-center space-x-1 px-2 sm:px-3 py-1.5 sm:py-2 bg-primary-light rounded-lg text-gray-300 text-xs sm:text-sm"
+                        className="flex items-center space-x-1 px-2 sm:px-3 py-1.5 sm:py-2 bg-primary rounded-lg text-gray-300 text-xs sm:text-sm border border-gray-700"
                       >
                         <Check size={12} className="text-accent sm:w-4 sm:h-4" />
                         <span>{amenity}</span>
@@ -193,12 +182,15 @@ function RoomsSection() {
                 </div>
 
                 {/* CTA Button */}
-                <button
-                  onClick={scrollToContact}
-                  className="btn-primary w-full text-base sm:text-lg py-3 sm:py-4"
+                <a
+                  href={selectedRoom.bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary w-full text-base sm:text-lg py-3 sm:py-4 inline-flex items-center justify-center"
                 >
-                  Dieses Zimmer anfragen
-                </button>
+                  <ExternalLink size={20} className="mr-2" />
+                  Jetzt buchen
+                </a>
               </div>
             </motion.div>
           </motion.div>

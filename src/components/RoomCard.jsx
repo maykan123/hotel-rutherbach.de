@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { useReducedMotion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import { Bed, ShowerHead, Tv, Wifi, Car, Sparkles } from 'lucide-react'
+import { Bed, ShowerHead, Tv, Wifi, Car, Sparkles, ExternalLink } from 'lucide-react'
 
 const amenityIcons = {
   'Dusche/WC': ShowerHead,
@@ -38,7 +37,6 @@ function RoomCard({ room, index }) {
     >
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
-        {/* TODO: Ersetze durch echtes Zimmerbild in /public/images/ */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 hover:scale-105"
           style={{
@@ -62,7 +60,7 @@ function RoomCard({ room, index }) {
 
         {/* Amenities */}
         <div className="flex flex-wrap gap-2 mb-6">
-          {room.amenities.map((amenity) => {
+          {room.amenities.slice(0, 4).map((amenity) => {
             const Icon = amenityIcons[amenity] || Sparkles
             return (
               <span
@@ -82,12 +80,15 @@ function RoomCard({ room, index }) {
             <span className="text-2xl font-bold text-accent">{room.price} €</span>
             <span className="text-gray-400 text-sm"> / Nacht</span>
           </div>
-          <Link
-            to={`/kontakt?zimmer=${encodeURIComponent(room.name)}`}
+          <a
+            href={room.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-primary text-sm"
           >
-            Hier anfragen
-          </Link>
+            <ExternalLink size={16} className="mr-1" />
+            Jetzt buchen
+          </a>
         </div>
       </div>
     </motion.div>

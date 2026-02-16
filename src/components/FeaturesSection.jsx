@@ -91,7 +91,7 @@ const features = [
 
 function FeaturesSection() {
   return (
-    <section className="py-16 sm:py-20 bg-primary-light">
+    <section className="py-24 sm:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -101,10 +101,10 @@ function FeaturesSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
-            Ausstattung & <span className="text-accent">Service</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+            Ausstattung & <span className="text-accent-dark">Service</span>
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto text-base sm:text-lg px-2 sm:px-0">
+          <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg px-2 sm:px-0">
             Damit Sie sich bei uns rundum wohlfühlen, bieten wir Ihnen alle 
             Annehmlichkeiten für einen entspannten Aufenthalt.
           </p>
@@ -119,7 +119,7 @@ function FeaturesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.03 }}
-              className="group p-4 sm:p-6 bg-primary rounded-xl border border-gray-700 hover:border-accent/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5"
+              className="blue-island p-4 sm:p-6 hover:border-accent/50 transition-all duration-300 hover:shadow-accent/5"
             >
               <div className="w-12 h-12 sm:w-14 sm:h-14 bg-accent/10 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-accent/20 transition-colors">
                 <feature.icon size={24} className="text-accent sm:w-7 sm:h-7" />

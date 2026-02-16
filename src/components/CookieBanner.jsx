@@ -95,26 +95,26 @@ function CookieBanner() {
     <AnimatePresence>
       {isVisible && (
         <>
-          {/* Main Banner */}
+          {/* Main Banner - weißes Design */}
           <motion.div
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-0 left-0 right-0 z-50 bg-primary-light border-t border-gray-700 shadow-2xl"
+            className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-2xl"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-2">
                     <Shield size={20} className="text-accent" />
-                    <h3 className="text-lg font-semibold text-white">Datenschutzeinstellungen</h3>
+                    <h3 className="text-lg font-semibold text-gray-800">Datenschutzeinstellungen</h3>
                   </div>
-                  <p className="text-gray-300 text-sm max-w-2xl">
+                  <p className="text-gray-600 text-sm max-w-2xl">
                     Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. 
                     Sie können Ihre Präferenzen anpassen oder alle Cookies akzeptieren. 
                     Weitere Informationen finden Sie in unserer{' '}
-                    <a href="/datenschutz" className="text-accent hover:underline">
+                    <a href="/datenschutz" className="text-accent-dark hover:underline">
                       Datenschutzerklärung
                     </a>.
                   </p>
@@ -123,14 +123,14 @@ function CookieBanner() {
                 <div className="flex flex-wrap items-center gap-3">
                   <button
                     onClick={() => setShowSettings(true)}
-                    className="flex items-center space-x-2 px-4 py-2 text-gray-300 hover:text-white transition-colors"
+                    className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
                   >
                     <Settings size={18} />
                     <span>Einstellungen</span>
                   </button>
                   <button
                     onClick={acceptEssential}
-                    className="px-4 py-2 text-gray-300 hover:text-white transition-colors"
+                    className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
                   >
                     Nur Essenzielle
                   </button>
@@ -160,14 +160,14 @@ function CookieBanner() {
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.95, opacity: 0 }}
                   onClick={(e) => e.stopPropagation()}
-                  className="bg-primary-light rounded-xl border border-gray-700 max-w-lg w-full max-h-[90vh] overflow-y-auto"
+                  className="bg-white rounded-xl border border-gray-200 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl"
                 >
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-xl font-bold text-white">Cookie-Einstellungen</h3>
+                      <h3 className="text-xl font-bold text-gray-800">Cookie-Einstellungen</h3>
                       <button
                         onClick={() => setShowSettings(false)}
-                        className="text-gray-400 hover:text-white transition-colors"
+                        className="text-gray-400 hover:text-gray-800 transition-colors"
                         aria-label="Schließen"
                       >
                         <X size={24} />
@@ -178,19 +178,19 @@ function CookieBanner() {
                       {cookieCategories.map((category) => (
                         <div
                           key={category.id}
-                          className="p-4 bg-primary rounded-lg border border-gray-700"
+                          className="p-4 bg-gray-50 rounded-lg border border-gray-200"
                         >
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="flex items-center space-x-2">
-                                <h4 className="font-semibold text-white">{category.name}</h4>
+                                <h4 className="font-semibold text-gray-800">{category.name}</h4>
                                 {category.required && (
                                   <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded">
                                     Erforderlich
                                   </span>
                                 )}
                               </div>
-                              <p className="text-sm text-gray-400 mt-1">{category.description}</p>
+                              <p className="text-sm text-gray-600 mt-1">{category.description}</p>
                             </div>
                             <label className="relative inline-flex items-center cursor-pointer ml-4">
                               <input
@@ -202,7 +202,7 @@ function CookieBanner() {
                               />
                               <div
                                 className={`w-11 h-6 rounded-full peer transition-colors ${
-                                  consent[category.id] ? 'bg-accent' : 'bg-gray-600'
+                                  consent[category.id] ? 'bg-accent' : 'bg-gray-300'
                                 } ${category.required ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                               >
                                 <div
@@ -220,7 +220,7 @@ function CookieBanner() {
                     <div className="flex flex-col sm:flex-row gap-3">
                       <button
                         onClick={() => setShowSettings(false)}
-                        className="flex-1 px-4 py-2 text-gray-300 hover:text-white transition-colors"
+                        className="flex-1 px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
                       >
                         Abbrechen
                       </button>

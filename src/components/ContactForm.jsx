@@ -2,7 +2,10 @@ import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, Loader2, Send } from 'lucide-react'
-import { roomsData } from '../data/rooms'
+import { roomsData, BREAKFAST_PRICE } from '../data/rooms'
+
+// WICHTIG: Ersetze diesen Platzhalter durch deinen Web3Forms Access Key
+const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE'
 
 function ContactForm() {
   const [searchParams] = useSearchParams()
@@ -92,18 +95,35 @@ function ContactForm() {
 
     setIsSubmitting(true)
 
-    // Netlify Forms handling
-    const form = e.target
-    const formDataNetlify = new FormData(form)
-
+    // Web3Forms API Call
     try {
-      const response = await fetch('/', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formDataNetlify).toString(),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Neue Anfrage: ${formData.zimmer} - ${formData.name}`,
+          from_name: 'Hotel Rutherbach Website',
+          name: formData.name,
+          email: formData.email,
+          telefon: formData.telefon,
+          zimmer: formData.zimmer,
+          anreise: formData.anreise,
+          abreise: formData.abreise,
+          gaeste: formData.gaeste,
+          nachricht: formData.nachricht,
+          // Optionale Felder für bessere Formatierung
+          replyto: formData.email,
+          botcheck: '' // Honeypot für Spam-Schutz
+        })
       })
 
-      if (response.ok) {
+      const result = await response.json()
+
+      if (result.success) {
         setIsSubmitted(true)
         setFormData({
           name: '',
@@ -117,17 +137,17 @@ function ContactForm() {
           dsgvo: false,
         })
       } else {
-        throw new Error('Form submission failed')
+        throw new Error(result.message || 'Form submission failed')
       }
     } catch (error) {
-      setErrors({ submit: 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.' })
+      setErrors({ submit: 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder rufen Sie uns an: 0201 - 40 88 39 18' })
     } finally {
       setIsSubmitting(false)
     }
   }
 
   return (
-    <section id="kontakt" className="py-16 sm:py-20 bg-primary-light">
+    <section id="kontakt" className="py-24 sm:py-32 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -136,12 +156,12 @@ function ContactForm() {
           transition={{ duration: 0.5 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
-            Kontakt & <span className="text-accent">Anfrage</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+            Kontakt & <span className="text-accent-dark">Anfrage</span>
           </h2>
-          <p className="text-gray-300 text-base sm:text-lg px-2 sm:px-0">
+          <p className="text-gray-600 text-base sm:text-lg px-2 sm:px-0">
             Senden Sie uns Ihre Anfrage – wir melden uns schnellstmöglich bei Ihnen. 
-            <span className="text-accent font-semibold block sm:inline mt-2 sm:mt-0">Bei Direktbuchung über uns sparen Sie sich die Buchungsgebühren!</span>
+            <span className="text-accent-dark font-semibold block sm:inline mt-2 sm:mt-0">Bei Direktbuchung über uns sparen Sie sich die Buchungsgebühren!</span>
           </p>
         </motion.div>
 
@@ -152,7 +172,7 @@ function ContactForm() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-primary p-6 sm:p-8 rounded-xl border border-accent/30 text-center"
+              className="blue-island p-6 sm:p-8 text-center"
             >
               <div className="w-14 h-14 sm:w-16 sm:h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Check size={28} className="text-accent sm:w-8 sm:h-8" />
@@ -168,27 +188,20 @@ function ContactForm() {
           ) : (
             <motion.form
               key="form"
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="bg-primary p-4 sm:p-6 lg:p-8 rounded-xl border border-gray-700"
+              className="blue-island p-4 sm:p-6 lg:p-8"
             >
-              {/* Netlify form requirements */}
-              <input type="hidden" name="form-name" value="contact" />
-              <div hidden>
-                <input name="bot-field" />
-              </div>
+              {/* Honeypot für Spam-Schutz */}
+              <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Name */}
                 <div>
-                  <label htmlFor="name" className="form-label text-sm sm:text-base">
-                    Name <span className="text-accent">*</span>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                    Name <span className="text-accent-dark">*</span>
                   </label>
                   <input
                     type="text"
@@ -197,7 +210,7 @@ function ContactForm() {
                     value={formData.name}
                     onChange={handleChange}
                     onBlur={() => handleBlur('name')}
-                    className={`form-input text-sm sm:text-base ${errors.name && touched.name ? 'border-red-500' : ''}`}
+                    className={`w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 text-sm sm:text-base ${errors.name && touched.name ? 'border-red-500' : ''}`}
                     placeholder="Ihr vollständiger Name"
                     aria-invalid={errors.name && touched.name ? 'true' : 'false'}
                     aria-describedby={errors.name && touched.name ? 'name-error' : undefined}
@@ -209,8 +222,8 @@ function ContactForm() {
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="form-label text-sm sm:text-base">
-                    E-Mail <span className="text-accent">*</span>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                    E-Mail <span className="text-accent-dark">*</span>
                   </label>
                   <input
                     type="email"
@@ -219,7 +232,7 @@ function ContactForm() {
                     value={formData.email}
                     onChange={handleChange}
                     onBlur={() => handleBlur('email')}
-                    className={`form-input text-sm sm:text-base ${errors.email && touched.email ? 'border-red-500' : ''}`}
+                    className={`w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 text-sm sm:text-base ${errors.email && touched.email ? 'border-red-500' : ''}`}
                     placeholder="ihre@email.de"
                     aria-invalid={errors.email && touched.email ? 'true' : 'false'}
                     aria-describedby={errors.email && touched.email ? 'email-error' : undefined}
@@ -231,7 +244,7 @@ function ContactForm() {
 
                 {/* Telefon */}
                 <div>
-                  <label htmlFor="telefon" className="form-label text-sm sm:text-base">
+                  <label htmlFor="telefon" className="block text-sm font-medium text-gray-300 mb-2">
                     Telefon <span className="text-gray-500">(optional)</span>
                   </label>
                   <input
@@ -240,15 +253,15 @@ function ContactForm() {
                     name="telefon"
                     value={formData.telefon}
                     onChange={handleChange}
-                    className="form-input text-sm sm:text-base"
+                    className="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 text-sm sm:text-base"
                     placeholder="0201 - 123456"
                   />
                 </div>
 
                 {/* Zimmer */}
                 <div>
-                  <label htmlFor="zimmer" className="form-label text-sm sm:text-base">
-                    Gewünschter Zimmer-Typ <span className="text-accent">*</span>
+                  <label htmlFor="zimmer" className="block text-sm font-medium text-gray-300 mb-2">
+                    Gewünschter Zimmer-Typ <span className="text-accent-dark">*</span>
                   </label>
                   <select
                     id="zimmer"
@@ -256,7 +269,7 @@ function ContactForm() {
                     value={formData.zimmer}
                     onChange={handleChange}
                     onBlur={() => handleBlur('zimmer')}
-                    className={`form-input text-sm sm:text-base ${errors.zimmer && touched.zimmer ? 'border-red-500' : ''}`}
+                    className={`w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 text-sm sm:text-base ${errors.zimmer && touched.zimmer ? 'border-red-500' : ''}`}
                     aria-invalid={errors.zimmer && touched.zimmer ? 'true' : 'false'}
                     aria-describedby={errors.zimmer && touched.zimmer ? 'zimmer-error' : undefined}
                   >
@@ -274,39 +287,39 @@ function ContactForm() {
 
                 {/* Anreise */}
                 <div>
-                  <label htmlFor="anreise" className="form-label text-sm sm:text-base">Anreise</label>
+                  <label htmlFor="anreise" className="block text-sm font-medium text-gray-300 mb-2">Anreise</label>
                   <input
                     type="date"
                     id="anreise"
                     name="anreise"
                     value={formData.anreise}
                     onChange={handleChange}
-                    className="form-input text-sm sm:text-base"
+                    className="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 text-sm sm:text-base"
                   />
                 </div>
 
                 {/* Abreise */}
                 <div>
-                  <label htmlFor="abreise" className="form-label text-sm sm:text-base">Abreise</label>
+                  <label htmlFor="abreise" className="block text-sm font-medium text-gray-300 mb-2">Abreise</label>
                   <input
                     type="date"
                     id="abreise"
                     name="abreise"
                     value={formData.abreise}
                     onChange={handleChange}
-                    className="form-input text-sm sm:text-base"
+                    className="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 text-sm sm:text-base"
                   />
                 </div>
 
                 {/* Gäste */}
                 <div>
-                  <label htmlFor="gaeste" className="form-label text-sm sm:text-base">Gästeanzahl</label>
+                  <label htmlFor="gaeste" className="block text-sm font-medium text-gray-300 mb-2">Gästeanzahl</label>
                   <select
                     id="gaeste"
                     name="gaeste"
                     value={formData.gaeste}
                     onChange={handleChange}
-                    className="form-input text-sm sm:text-base"
+                    className="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 text-sm sm:text-base"
                   >
                     {[1, 2, 3, 4, 5, 6].map(num => (
                       <option key={num} value={num}>{num} {num === 1 ? 'Person' : 'Personen'}</option>
@@ -317,8 +330,8 @@ function ContactForm() {
 
               {/* Nachricht */}
               <div className="mt-4 sm:mt-6">
-                <label htmlFor="nachricht" className="form-label text-sm sm:text-base">
-                  Nachricht <span className="text-accent">*</span>
+                <label htmlFor="nachricht" className="block text-sm font-medium text-gray-300 mb-2">
+                  Nachricht <span className="text-accent-dark">*</span>
                 </label>
                 <textarea
                   id="nachricht"
@@ -327,7 +340,7 @@ function ContactForm() {
                   value={formData.nachricht}
                   onChange={handleChange}
                   onBlur={() => handleBlur('nachricht')}
-                  className={`form-input resize-none text-sm sm:text-base ${errors.nachricht && touched.nachricht ? 'border-red-500' : ''}`}
+                  className={`w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 resize-none text-sm sm:text-base ${errors.nachricht && touched.nachricht ? 'border-red-500' : ''}`}
                   placeholder="Ihre Nachricht oder besondere Wünsche..."
                   aria-invalid={errors.nachricht && touched.nachricht ? 'true' : 'false'}
                   aria-describedby={errors.nachricht && touched.nachricht ? 'nachricht-error' : undefined}
@@ -347,17 +360,23 @@ function ContactForm() {
                     checked={formData.dsgvo}
                     onChange={handleChange}
                     onBlur={() => handleBlur('dsgvo')}
-                    className="mt-1 w-4 h-4 rounded border-gray-600 text-accent focus:ring-accent bg-primary-light flex-shrink-0"
+                    className="mt-1 w-4 h-4 rounded border-gray-600 text-accent focus:ring-accent bg-primary flex-shrink-0"
                     aria-invalid={errors.dsgvo && touched.dsgvo ? 'true' : 'false'}
                   />
                   <label htmlFor="dsgvo" className={`text-xs sm:text-sm ${errors.dsgvo && touched.dsgvo ? 'text-red-400' : 'text-gray-300'}`}>
-                    <span className="text-accent">*</span> Ich stimme der Speicherung meiner Daten zu, damit das Hotel mich kontaktieren kann.{' '}
+                    <span className="text-accent-dark">*</span> Ich stimme der Speicherung meiner Daten zu, damit das Hotel mich kontaktieren kann.{' '}
                     <a href="/datenschutz" className="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
                       Datenschutzerklärung
                     </a>
                   </label>
                 </div>
+              </div>
 
+              {/* Frühstück Hinweis */}
+              <div className="mt-4 p-3 sm:p-4 bg-primary rounded-lg border border-accent/20">
+                <p className="text-gray-300 text-xs sm:text-sm">
+                  <span className="text-accent font-semibold">🍳 Frühstück:</span> {BREAKFAST_PRICE} € pro Nacht (optional)
+                </p>
               </div>
 
               {/* Submit Error */}
@@ -397,7 +416,7 @@ function ContactForm() {
               </div>
 
               <p className="mt-3 sm:mt-4 text-center text-xs sm:text-sm text-gray-500">
-                <span className="text-accent">*</span> Pflichtfelder
+                <span className="text-accent-dark">*</span> Pflichtfelder
               </p>
             </motion.form>
           )}

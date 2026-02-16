@@ -14,16 +14,17 @@ function Hero() {
 
   return (
     <section id="start" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image - volles Bild wie vorher */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url('/images/hero.webp')` }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-primary" />
         </div>
       </div>
 
-      {/* Quick Info Bar */}
+      {/* Quick Info Bar - wieder dunkelblau */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -50,7 +51,7 @@ function Hero() {
         </div>
       </motion.div>
 
-      {/* Main Content */}
+      {/* Main Content - zentriert wie vorher */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-28 sm:pt-32">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -116,7 +117,7 @@ function Hero() {
             </button>
           </motion.div>
 
-          {/* Direktbuchung Badge - unter den Buttons */}
+          {/* Direktbuchung Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
