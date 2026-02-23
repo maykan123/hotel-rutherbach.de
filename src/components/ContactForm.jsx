@@ -5,7 +5,7 @@ import { Check, Loader2, Send } from 'lucide-react'
 import { roomsData, BREAKFAST_PRICE } from '../data/rooms'
 
 // WICHTIG: Ersetze diesen Platzhalter durch deinen Web3Forms Access Key
-const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE'
+const WEB3FORMS_ACCESS_KEY = '8410f864-6c58-4d9e-96e1-57d2544a4eda'
 
 function ContactForm() {
   const [searchParams] = useSearchParams()
