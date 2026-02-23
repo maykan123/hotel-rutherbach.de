@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ChevronDown, Phone, MapPin, Mail } from 'lucide-react'
+import { ChevronDown, Phone, MapPin, Mail, ExternalLink } from 'lucide-react'
 
 function Hero() {
   const scrollToSection = (id) => {
@@ -12,6 +12,10 @@ function Hero() {
     }
   }
 
+  const handleBooking = () => {
+    window.open('https://booking.roomraccoon.de/hotel-rutherbach/de/', '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <section id="start" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
       {/* Background Image - volles Bild wie vorher */}
@@ -20,7 +24,7 @@ function Hero() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url('/images/hero.webp')` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-primary" />
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-700/90 via-blue-600/70 to-blue-500/50" />
         </div>
       </div>
 
@@ -104,16 +108,17 @@ function Hero() {
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           >
             <button
-              onClick={() => scrollToSection('kontakt')}
-              className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto"
+              onClick={handleBooking}
+              className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto inline-flex items-center justify-center"
             >
-              Jetzt Anfrage senden
+              <ExternalLink size={20} className="mr-2" />
+              Jetzt buchen
             </button>
             <button
-              onClick={() => scrollToSection('zimmer')}
+              onClick={() => scrollToSection('kontakt')}
               className="btn-secondary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto"
             >
-              Zimmer entdecken
+              Jetzt anfragen
             </button>
           </motion.div>
 

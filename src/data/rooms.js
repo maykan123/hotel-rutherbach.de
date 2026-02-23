@@ -9,9 +9,6 @@ export const roomsData = [
     maxGuests: 4,
     beds: '2x Doppelbett',
     price: 135,
-    priceInfo: 'ab 135 € (1 Gast) / +20 € (3 Gäste) / +50 € (4 Gäste)',
-    fairPrice: 170,
-    fairPriceInfo: 'Messe ab 170 € / +20 € (3 Gäste) / +50 € (4 Gäste)',
     image: '/images/apartments/ap1.jpg',
     amenities: ['Küche', 'Dusche/WC', 'Smart TV', 'HD Kanäle', 'Streaming', 'W-LAN', 'Parkplatz', 'Täglicher Service'],
     bookingUrl: 'https://booking.roomraccoon.de/hotel-rutherbach/de/#128059'
@@ -25,9 +22,6 @@ export const roomsData = [
     maxGuests: 3,
     beds: '2x Doppelbett + 1 Einzelbett (Empore)',
     price: 115,
-    priceInfo: 'ab 115 € (1 Gast) / +20 € (3 Gäste)',
-    fairPrice: 150,
-    fairPriceInfo: 'Messe ab 150 € / +20 € (3 Gäste)',
     image: '/images/apartments/ap2.jpg',
     amenities: ['Küche', 'Dusche/WC', 'Smart TV', 'HD Kanäle', 'Streaming', 'W-LAN', 'Parkplatz', 'Täglicher Service'],
     bookingUrl: 'https://booking.roomraccoon.de/hotel-rutherbach/de/#128060'
@@ -41,9 +35,6 @@ export const roomsData = [
     maxGuests: 6,
     beds: '3x Doppelbett + 1 Doppelbett (Empore)',
     price: 140,
-    priceInfo: 'ab 140 € (1 Gast) / +20 € (3G) / +40 € (4G) / +60 € (5G) / +80 € (6G)',
-    fairPrice: 190,
-    fairPriceInfo: 'Messe ab 190 € / +20 € (3G) / +40 € (4G) / +60 € (5G) / +80 € (6G)',
     image: '/images/apartments/ap3.jpg',
     amenities: ['Kochnische', 'Dusche/WC', 'Smart TV', 'HD Kanäle', 'Streaming', 'W-LAN', 'Parkplatz', 'Täglicher Service'],
     bookingUrl: 'https://booking.roomraccoon.de/hotel-rutherbach/de/#127966'
@@ -57,9 +48,6 @@ export const roomsData = [
     maxGuests: 2,
     beds: '1 Doppelbett',
     price: 105,
-    priceInfo: 'ab 105 € (1 Gast)',
-    fairPrice: 135,
-    fairPriceInfo: 'Messe ab 135 €',
     image: '/images/doppelzimmer/dz1.jpg',
     amenities: ['Dusche/WC', 'Smart TV', 'HD Kanäle', 'Streaming', 'W-LAN', 'Parkplatz', 'Täglicher Service'],
     bookingUrl: 'https://booking.roomraccoon.de/hotel-rutherbach/de/#127977'
@@ -73,9 +61,6 @@ export const roomsData = [
     maxGuests: 2,
     beds: '1 Doppelbett',
     price: 105,
-    priceInfo: 'ab 105 € (1 Gast)',
-    fairPrice: 135,
-    fairPriceInfo: 'Messe ab 135 €',
     image: '/images/doppelzimmer/dz2.jpg',
     amenities: ['Dusche/WC', 'Smart TV', 'HD Kanäle', 'Streaming', 'W-LAN', 'Parkplatz', 'Täglicher Service'],
     bookingUrl: 'https://booking.roomraccoon.de/hotel-rutherbach/de/#127977'
@@ -89,9 +74,6 @@ export const roomsData = [
     maxGuests: 2,
     beds: '2 Einzelbetten',
     price: 105,
-    priceInfo: 'ab 105 € (1 Gast)',
-    fairPrice: 135,
-    fairPriceInfo: 'Messe ab 135 €',
     image: '/images/doppelzimmer/dz3.jpg',
     amenities: ['Dusche/WC', 'Smart TV', 'HD Kanäle', 'Streaming', 'W-LAN', 'Parkplatz', 'Täglicher Service'],
     bookingUrl: 'https://booking.roomraccoon.de/hotel-rutherbach/de/#127977'
@@ -105,9 +87,6 @@ export const roomsData = [
     maxGuests: 2,
     beds: '2 Einzelbetten',
     price: 105,
-    priceInfo: 'ab 105 € (1 Gast)',
-    fairPrice: 135,
-    fairPriceInfo: 'Messe ab 135 €',
     image: '/images/doppelzimmer/dz4.jpg',
     amenities: ['Dusche/WC', 'Smart TV', 'HD Kanäle', 'Streaming', 'W-LAN', 'Parkplatz', 'Täglicher Service'],
     bookingUrl: 'https://booking.roomraccoon.de/hotel-rutherbach/de/#127977'
@@ -121,9 +100,6 @@ export const roomsData = [
     maxGuests: 3,
     beds: '1 Doppelbett + 1 Einzelbett',
     price: 115,
-    priceInfo: 'ab 115 € (1 Gast) / +20 € (3 Gäste)',
-    fairPrice: 150,
-    fairPriceInfo: 'Messe ab 150 € / +20 € (3 Gäste)',
     image: '/images/komfort/kdz1.jpg',
     amenities: ['2 Räume', 'Dusche/WC', 'Smart TV', 'HD Kanäle', 'Streaming', 'W-LAN', 'Parkplatz', 'Täglicher Service'],
     bookingUrl: 'https://booking.roomraccoon.de/hotel-rutherbach/de/#127977'
@@ -137,9 +113,6 @@ export const roomsData = [
     maxGuests: 3,
     beds: '1 Doppelbett + 1 Einzelbett',
     price: 115,
-    priceInfo: 'ab 115 € (1 Gast) / +20 € (3 Gäste)',
-    fairPrice: 150,
-    fairPriceInfo: 'Messe ab 150 € / +20 € (3 Gäste)',
     image: '/images/komfort/kdz2.jpg',
     amenities: ['2 Räume', 'Dusche/WC', 'Smart TV', 'HD Kanäle', 'Streaming', 'W-LAN', 'Parkplatz', 'Täglicher Service'],
     bookingUrl: 'https://booking.roomraccoon.de/hotel-rutherbach/de/#127977'
@@ -153,9 +126,6 @@ export const roomsData = [
     maxGuests: 1,
     beds: '1 Einzelbett',
     price: 85,
-    priceInfo: 'ab 85 € (1 Gast)',
-    fairPrice: 115,
-    fairPriceInfo: 'Messe ab 115 €',
     image: '/images/einzelzimmer/ez01.jpg',
     amenities: ['Dusche/WC', 'Smart TV', 'HD Kanäle', 'Streaming', 'W-LAN', 'Parkplatz', 'Täglicher Service'],
     bookingUrl: 'https://booking.roomraccoon.de/hotel-rutherbach/de/#128062'

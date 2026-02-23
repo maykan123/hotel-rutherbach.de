@@ -134,7 +134,7 @@ function RoomsSection() {
                   </div>
                   <div className="mt-3 sm:mt-0 text-left sm:text-right">
                     <p className="text-2xl sm:text-3xl font-bold text-accent">ab {selectedRoom.price} €</p>
-                    <p className="text-gray-400 text-xs sm:text-sm">{selectedRoom.priceInfo}</p>
+                    <p className="text-gray-400 text-xs sm:text-sm">pro Nacht</p>
                   </div>
                 </div>
 
