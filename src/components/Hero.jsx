@@ -24,7 +24,7 @@ function Hero() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url('/images/hero.webp')` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-700/90 via-blue-600/70 to-blue-500/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-primary" />
         </div>
       </div>
 
