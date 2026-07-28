@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, Clock } from 'lucide-react'
 
 function Footer() {
+  const { t } = useTranslation()
   const currentYear = new Date().getFullYear()
 
   const scrollToSection = (id) => {
@@ -20,7 +22,7 @@ function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Contact Info */}
           <div>
-            <h3 className="text-base sm:text-lg font-semibold text-accent mb-3 sm:mb-4">Kontakt</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-accent mb-3 sm:mb-4">{t('footer.contactTitle')}</h3>
             <div className="space-y-2 sm:space-y-3">
               <p className="text-gray-300 text-sm sm:text-base">Makyan Saeed</p>
               <p className="text-gray-300 text-sm sm:text-base">HOTEL RUTHERBACH</p>
@@ -45,21 +47,21 @@ function Footer() {
               </div>
               <div className="flex items-center space-x-2 sm:space-x-3 text-gray-400 text-xs sm:text-sm pt-1 sm:pt-2">
                 <Clock size={14} className="text-accent flex-shrink-0" />
-                <span>Check-in ab 15:00 · Check-out bis 11:00</span>
+                <span>{t('footer.checkInOut')}</span>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-base sm:text-lg font-semibold text-accent mb-3 sm:mb-4">Schnelllinks</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-accent mb-3 sm:mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
                 <button 
                   onClick={() => scrollToSection('start')}
                   className="text-gray-300 hover:text-accent transition-colors text-sm sm:text-base"
                 >
-                  Startseite
+                  {t('nav.start')}
                 </button>
               </li>
               <li>
@@ -67,7 +69,7 @@ function Footer() {
                   onClick={() => scrollToSection('ueber-uns')}
                   className="text-gray-300 hover:text-accent transition-colors text-sm sm:text-base"
                 >
-                  Über uns
+                  {t('nav.ueber-uns')}
                 </button>
               </li>
               <li>
@@ -75,7 +77,7 @@ function Footer() {
                   onClick={() => scrollToSection('zimmer')}
                   className="text-gray-300 hover:text-accent transition-colors text-sm sm:text-base"
                 >
-                  Zimmer
+                  {t('nav.zimmer')}
                 </button>
               </li>
               <li>
@@ -83,7 +85,7 @@ function Footer() {
                   onClick={() => scrollToSection('kontakt')}
                   className="text-gray-300 hover:text-accent transition-colors text-sm sm:text-base"
                 >
-                  Kontakt
+                  {t('nav.kontakt')}
                 </button>
               </li>
             </ul>
@@ -91,16 +93,16 @@ function Footer() {
 
           {/* Legal */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <h3 className="text-base sm:text-lg font-semibold text-accent mb-3 sm:mb-4">Rechtliches</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-accent mb-3 sm:mb-4">{t('footer.legal')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/impressum" className="text-gray-300 hover:text-accent transition-colors text-sm sm:text-base">
-                  Impressum
+                  {t('footer.impressum')}
                 </Link>
               </li>
               <li>
                 <Link to="/datenschutz" className="text-gray-300 hover:text-accent transition-colors text-sm sm:text-base">
-                  Datenschutz
+                  {t('footer.privacy')}
                 </Link>
               </li>
             </ul>
@@ -109,7 +111,7 @@ function Footer() {
 
         <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-700 text-center">
           <p className="text-gray-400 text-xs sm:text-sm">
-            © {currentYear} Hotel Rutherbach. Alle Rechte vorbehalten.
+            {t('footer.rights', { year: currentYear })}
           </p>
         </div>
       </div>

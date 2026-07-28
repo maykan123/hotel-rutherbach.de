@@ -1,7 +1,13 @@
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-import { MapPin, Car, Train, Clock, Navigation, Phone } from 'lucide-react'
+import { MapPin, Car, Train, Clock, Navigation } from 'lucide-react'
+
+const featureIcons = [MapPin, Navigation, Car, Train]
 
 function LocationSection() {
+  const { t } = useTranslation()
+  const features = t('location.features', { returnObjects: true })
+
   return (
     <section id="lage" className="py-24 sm:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,56 +21,29 @@ function LocationSection() {
           >
             <div className="blue-island p-6 sm:p-8 lg:p-10">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6">
-                Perfekte Lage in <span className="text-accent-dark">Essen-Kettwig</span>
+                {t('location.title1')} <span className="text-accent-dark">{t('location.titleAccent')}</span>
               </h2>
               
               <p className="text-gray-300 text-base sm:text-lg mb-6 leading-relaxed">
-                Das Hotel Rutherbach liegt idyllisch direkt an der Ruhr, mit herrlichem Blick 
-                auf das Ruhrtal. Genießen Sie die Ruhe und Natur, während Sie dennoch nur 
-                wenige Minuten vom Stadtzentrum entfernt sind.
+                {t('location.description')}
               </p>
 
               {/* Location Features */}
               <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                <div className="flex items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin size={20} className="text-accent sm:w-6 sm:h-6" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1 text-sm sm:text-base">Direkt an der Ruhr</h4>
-                    <p className="text-gray-400 text-xs sm:text-sm">Ruhrpromenade direkt vor der Tür – ideal für Spaziergänge und Jogging</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Navigation size={20} className="text-accent sm:w-6 sm:h-6" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1 text-sm sm:text-base">Historischer Stadtkern</h4>
-                    <p className="text-gray-400 text-xs sm:text-sm">Nur 5 Minuten Fußweg zur malerischen Kettwiger Altstadt</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Car size={20} className="text-accent sm:w-6 sm:h-6" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1 text-sm sm:text-base">Gute Anbindung</h4>
-                    <p className="text-gray-400 text-xs sm:text-sm">Schnell zur A52 und A40 – Essen Zentrum in 15 Min.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Train size={20} className="text-accent sm:w-6 sm:h-6" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1 text-sm sm:text-base">ÖPNV</h4>
-                    <p className="text-gray-400 text-xs sm:text-sm">Buslinie direkt am Hotel, S-Bahn Kettwig in 10 Min. Fußweg</p>
-                  </div>
-                </div>
+                {features.map((feature, index) => {
+                  const Icon = featureIcons[index]
+                  return (
+                    <div key={feature.title} className="flex items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon size={20} className="text-accent sm:w-6 sm:h-6" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold mb-1 text-sm sm:text-base">{feature.title}</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">{feature.description}</p>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
 
               {/* CTA */}
@@ -75,7 +54,7 @@ function LocationSection() {
                 className="btn-secondary inline-flex items-center text-sm sm:text-base"
               >
                 <MapPin size={18} className="mr-2 flex-shrink-0" />
-                Auf Google Maps anzeigen
+                {t('location.showOnMaps')}
               </a>
             </div>
           </motion.div>
@@ -99,7 +78,7 @@ function LocationSection() {
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Hotel Rutherbach auf Google Maps"
+                  title={t('location.mapTitle')}
                   className="grayscale-[30%] hover:grayscale-0 transition-all duration-300"
                 />
               </div>
@@ -110,23 +89,23 @@ function LocationSection() {
               <div className="blue-island p-2 sm:p-4 text-center">
                 <Clock className="text-accent mx-auto mb-1 sm:mb-2" size={18} />
                 <p className="text-lg sm:text-2xl font-bold text-accent">15:00</p>
-                <p className="text-gray-400 text-xs sm:text-sm">Check-in</p>
+                <p className="text-gray-400 text-xs sm:text-sm">{t('location.checkIn')}</p>
               </div>
               <div className="blue-island p-2 sm:p-4 text-center">
                 <Clock className="text-accent mx-auto mb-1 sm:mb-2" size={18} />
                 <p className="text-lg sm:text-2xl font-bold text-accent">11:00</p>
-                <p className="text-gray-400 text-xs sm:text-sm">Check-out</p>
+                <p className="text-gray-400 text-xs sm:text-sm">{t('location.checkOut')}</p>
               </div>
               <div className="blue-island p-2 sm:p-4 text-center">
                 <Clock className="text-accent mx-auto mb-1 sm:mb-2" size={18} />
                 <p className="text-lg sm:text-2xl font-bold text-accent">7:30</p>
-                <p className="text-gray-400 text-xs sm:text-sm">Frühstück</p>
+                <p className="text-gray-400 text-xs sm:text-sm">{t('location.breakfast')}</p>
               </div>
             </div>
 
             {/* Address Box - blaue Insel */}
             <div className="blue-island p-4 sm:p-6">
-              <h3 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Adresse</h3>
+              <h3 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">{t('location.addressTitle')}</h3>
               <div className="space-y-1 sm:space-y-2 text-gray-300 text-sm sm:text-base">
                 <p className="font-semibold text-accent">Hotel Rutherbach</p>
                 <p>Ruhrtalstraße 215 – 217</p>
@@ -134,7 +113,7 @@ function LocationSection() {
               </div>
               <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-700">
                 <div className="flex justify-between text-xs sm:text-sm">
-                  <span className="text-gray-400">Telefon:</span>
+                  <span className="text-gray-400">{t('location.phoneLabel')}</span>
                   <span className="text-white">0201 - 40 88 39 18</span>
                 </div>
               </div>

@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 function ImageSwiper({ images, alt }) {
+  const { t } = useTranslation()
   const [currentIndex, setCurrentIndex] = useState(0)
 
   // Fallback wenn keine Bilder vorhanden
@@ -30,13 +32,13 @@ function ImageSwiper({ images, alt }) {
           {displayImages[currentIndex] ? (
             <img
               src={displayImages[currentIndex]}
-              alt={`${alt} - Bild ${currentIndex + 1}`}
+              alt={`${alt} ${t('common.imageAltSuffix', { number: currentIndex + 1 })}`}
               className="w-full h-full object-cover"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-light to-primary">
               <div className="text-center p-4">
-                <p className="text-gray-400">Bild folgt</p>
+                <p className="text-gray-400">{t('common.imageFollows')}</p>
                 <p className="text-sm text-gray-500 mt-1">{alt}</p>
               </div>
             </div>
@@ -50,14 +52,14 @@ function ImageSwiper({ images, alt }) {
           <button
             onClick={goToPrevious}
             className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors"
-            aria-label="Vorheriges Bild"
+            aria-label={t('common.previousImage')}
           >
             <ChevronLeft size={24} />
           </button>
           <button
             onClick={goToNext}
             className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors"
-            aria-label="Nächstes Bild"
+            aria-label={t('common.nextImage')}
           >
             <ChevronRight size={24} />
           </button>
@@ -74,7 +76,7 @@ function ImageSwiper({ images, alt }) {
               className={`w-2 h-2 rounded-full transition-colors ${
                 index === currentIndex ? 'bg-accent' : 'bg-white/50 hover:bg-white/70'
               }`}
-              aria-label={`Zu Bild ${index + 1} springen`}
+              aria-label={t('common.goToImage', { number: index + 1 })}
             />
           ))}
         </div>

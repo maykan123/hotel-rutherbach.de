@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
 function Impressum() {
+  const { t, i18n } = useTranslation()
+
   return (
     <div className="pt-20">
       <section className="py-20 bg-primary-light">
@@ -12,14 +15,20 @@ function Impressum() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl font-bold text-white mb-8">
-              <span className="text-accent">Impressum</span>
+              <span className="text-accent">{t('impressum.title')}</span>
             </h1>
+
+            {i18n.language === 'en' && (
+              <p className="text-gray-500 text-sm italic mb-8 border-l-2 border-gray-600 pl-3">
+                {t('impressum.translationNote')}
+              </p>
+            )}
 
             <div className="space-y-8">
               {/* Angaben gemäß § 5 TMG */}
               <section>
                 <h2 className="text-2xl font-semibold text-accent mb-4">
-                  Angaben gemäß § 5 TMG
+                  {t('impressum.s1.title')}
                 </h2>
                 <div className="bg-primary p-6 rounded-lg border border-gray-700">
                   <p className="text-gray-300 leading-relaxed">
@@ -27,23 +36,23 @@ function Impressum() {
                     HOTEL RUTHERBACH<br /><br />
                     Ruhrtalstraße 215 - 217<br />
                     D-45219 Essen-Kettwig<br />
-                    Deutschland
+                    {t('impressum.s1.country')}
                   </p>
                 </div>
               </section>
 
               {/* Kontakt */}
               <section>
-                <h2 className="text-2xl font-semibold text-accent mb-4">Kontakt</h2>
+                <h2 className="text-2xl font-semibold text-accent mb-4">{t('impressum.s2.title')}</h2>
                 <div className="bg-primary p-6 rounded-lg border border-gray-700">
                   <p className="text-gray-300 leading-relaxed">
-                    <strong className="text-white">Telefon:</strong><br />
+                    <strong className="text-white">{t('impressum.s2.phone')}</strong><br />
                     0201 - 40 88 39 18<br /><br />
-                    <strong className="text-white">E-Mail:</strong><br />
+                    <strong className="text-white">{t('impressum.s2.email')}</strong><br />
                     <a href="mailto:info@hotel-rutherbach.de" className="text-accent hover:underline">
                       info@hotel-rutherbach.de
                     </a><br /><br />
-                    <strong className="text-white">Website:</strong><br />
+                    <strong className="text-white">{t('impressum.s2.website')}</strong><br />
                     <a href="https://www.hotel-rutherbach.de" className="text-accent hover:underline">
                       www.hotel-rutherbach.de
                     </a>
@@ -54,15 +63,15 @@ function Impressum() {
               {/* Umsatzsteuer */}
               <section>
                 <h2 className="text-2xl font-semibold text-accent mb-4">
-                  Umsatzsteuer-ID
+                  {t('impressum.s3.title')}
                 </h2>
                 <div className="bg-primary p-6 rounded-lg border border-gray-700">
                   <p className="text-gray-300">
-                    <strong className="text-white">Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:</strong><br />
-                    <span className="text-gray-400">[Bitte einfügen]</span>
+                    <strong className="text-white">{t('impressum.s3.label')}</strong><br />
+                    <span className="text-gray-400">{t('impressum.s3.placeholder')}</span>
                   </p>
                   <p className="text-gray-500 text-sm mt-2">
-                    TODO: USt-IdNr. vom Steuerberater erfragen und hier eintragen
+                    {t('impressum.s3.todo')}
                   </p>
                 </div>
               </section>
@@ -70,12 +79,12 @@ function Impressum() {
               {/* Gewerbeanmeldung */}
               <section>
                 <h2 className="text-2xl font-semibold text-accent mb-4">
-                  Gewerbeanmeldung
+                  {t('impressum.s4.title')}
                 </h2>
                 <div className="bg-primary p-6 rounded-lg border border-gray-700">
                   <p className="text-gray-300">
-                    Die Gewerbeanmeldung wurde durchgeführt von:<br />
-                    <strong className="text-white">Stadt Essen</strong>
+                    {t('impressum.s4.text')}<br />
+                    <strong className="text-white">{t('impressum.s4.authority')}</strong>
                   </p>
                 </div>
               </section>
@@ -83,11 +92,11 @@ function Impressum() {
               {/* Streitschlichtung */}
               <section>
                 <h2 className="text-2xl font-semibold text-accent mb-4">
-                  Streitschlichtung
+                  {t('impressum.s5.title')}
                 </h2>
                 <div className="bg-primary p-6 rounded-lg border border-gray-700">
                   <p className="text-gray-300 mb-4">
-                    Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br />
+                    {t('impressum.s5.p1')}<br />
                     <a 
                       href="https://ec.europa.eu/consumers/odr" 
                       target="_blank" 
@@ -98,8 +107,7 @@ function Impressum() {
                     </a>
                   </p>
                   <p className="text-gray-300">
-                    Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer 
-                    Verbraucherschlichtungsstelle teilzunehmen.
+                    {t('impressum.s5.p2')}
                   </p>
                 </div>
               </section>
@@ -107,22 +115,14 @@ function Impressum() {
               {/* Haftung für Inhalte */}
               <section>
                 <h2 className="text-2xl font-semibold text-accent mb-4">
-                  Haftung für Inhalte
+                  {t('impressum.s6.title')}
                 </h2>
                 <div className="bg-primary p-6 rounded-lg border border-gray-700">
                   <p className="text-gray-300 leading-relaxed">
-                    Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten 
-                    nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als 
-                    Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde 
-                    Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige 
-                    Tätigkeit hinweisen.
+                    {t('impressum.s6.p1')}
                   </p>
                   <p className="text-gray-300 mt-4 leading-relaxed">
-                    Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach 
-                    den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung 
-                    ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. 
-                    Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte 
-                    umgehend entfernen.
+                    {t('impressum.s6.p2')}
                   </p>
                 </div>
               </section>
@@ -130,14 +130,11 @@ function Impressum() {
               {/* Haftung für Links */}
               <section>
                 <h2 className="text-2xl font-semibold text-accent mb-4">
-                  Haftung für Links
+                  {t('impressum.s7.title')}
                 </h2>
                 <div className="bg-primary p-6 rounded-lg border border-gray-700">
                   <p className="text-gray-300 leading-relaxed">
-                    Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir 
-                    keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine 
-                    Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige 
-                    Anbieter oder Betreiber der Seiten verantwortlich.
+                    {t('impressum.s7.p1')}
                   </p>
                 </div>
               </section>
@@ -145,14 +142,11 @@ function Impressum() {
               {/* Urheberrecht */}
               <section>
                 <h2 className="text-2xl font-semibold text-accent mb-4">
-                  Urheberrecht
+                  {t('impressum.s8.title')}
                 </h2>
                 <div className="bg-primary p-6 rounded-lg border border-gray-700">
                   <p className="text-gray-300 leading-relaxed">
-                    Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten 
-                    unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, 
-                    Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes 
-                    bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+                    {t('impressum.s8.p1')}
                   </p>
                 </div>
               </section>
@@ -160,15 +154,14 @@ function Impressum() {
               {/* Bildnachweise */}
               <section>
                 <h2 className="text-2xl font-semibold text-accent mb-4">
-                  Bildnachweise
+                  {t('impressum.s9.title')}
                 </h2>
                 <div className="bg-primary p-6 rounded-lg border border-gray-700">
                   <p className="text-gray-300">
-                    Die verwendeten Bilder sind entweder Eigentum des Hotel Rutherbach oder unterliegen 
-                    den jeweiligen Lizenzbedingungen der Bildquellen.
+                    {t('impressum.s9.p1')}
                   </p>
                   <p className="text-gray-500 text-sm mt-2">
-                    TODO: Bei Verwendung von Stock-Fotos oder Fremdbildern entsprechende Quellenangaben ergänzen
+                    {t('impressum.s9.todo')}
                   </p>
                 </div>
               </section>
@@ -176,7 +169,7 @@ function Impressum() {
 
             <div className="mt-12 pt-8 border-t border-gray-700">
               <Link to="/" className="text-accent hover:underline">
-                ← Zurück zur Startseite
+                {t('common.backHome')}
               </Link>
             </div>
           </motion.div>

@@ -1,31 +1,18 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Settings, Shield } from 'lucide-react'
 
 const COOKIE_CONSENT_KEY = 'hotel-rutherbach-consent'
 
 const cookieCategories = [
-  {
-    id: 'essential',
-    name: 'Essentiell',
-    description: 'Notwendige Cookies für die grundlegende Funktionalität der Website.',
-    required: true,
-  },
-  {
-    id: 'statistics',
-    name: 'Statistik',
-    description: 'Helfen uns zu verstehen, wie Besucher mit der Website interagieren.',
-    required: false,
-  },
-  {
-    id: 'marketing',
-    name: 'Marketing',
-    description: 'Werden verwendet, um Besuchern relevante Werbung anzuzeigen.',
-    required: false,
-  },
+  { id: 'essential', required: true },
+  { id: 'statistics', required: false },
+  { id: 'marketing', required: false },
 ]
 
 function CookieBanner() {
+  const { t } = useTranslation()
   const [isVisible, setIsVisible] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
   const [consent, setConsent] = useState({
@@ -108,14 +95,12 @@ function CookieBanner() {
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-2">
                     <Shield size={20} className="text-accent" />
-                    <h3 className="text-lg font-semibold text-gray-800">Datenschutzeinstellungen</h3>
+                    <h3 className="text-lg font-semibold text-gray-800">{t('cookies.title')}</h3>
                   </div>
                   <p className="text-gray-600 text-sm max-w-2xl">
-                    Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. 
-                    Sie können Ihre Präferenzen anpassen oder alle Cookies akzeptieren. 
-                    Weitere Informationen finden Sie in unserer{' '}
+                    {t('cookies.description')}{' '}
                     <a href="/datenschutz" className="text-accent-dark hover:underline">
-                      Datenschutzerklärung
+                      {t('cookies.privacyLink')}
                     </a>.
                   </p>
                 </div>
@@ -126,19 +111,19 @@ function CookieBanner() {
                     className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
                   >
                     <Settings size={18} />
-                    <span>Einstellungen</span>
+                    <span>{t('cookies.settings')}</span>
                   </button>
                   <button
                     onClick={acceptEssential}
                     className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
                   >
-                    Nur Essenzielle
+                    {t('cookies.essentialOnly')}
                   </button>
                   <button
                     onClick={acceptAll}
                     className="btn-primary"
                   >
-                    Alle akzeptieren
+                    {t('cookies.acceptAll')}
                   </button>
                 </div>
               </div>
@@ -164,11 +149,11 @@ function CookieBanner() {
                 >
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-xl font-bold text-gray-800">Cookie-Einstellungen</h3>
+                      <h3 className="text-xl font-bold text-gray-800">{t('cookies.modalTitle')}</h3>
                       <button
                         onClick={() => setShowSettings(false)}
                         className="text-gray-400 hover:text-gray-800 transition-colors"
-                        aria-label="Schließen"
+                        aria-label={t('cookies.close')}
                       >
                         <X size={24} />
                       </button>
@@ -183,14 +168,14 @@ function CookieBanner() {
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="flex items-center space-x-2">
-                                <h4 className="font-semibold text-gray-800">{category.name}</h4>
+                                <h4 className="font-semibold text-gray-800">{t(`cookies.categories.${category.id}.name`)}</h4>
                                 {category.required && (
                                   <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded">
-                                    Erforderlich
+                                    {t('cookies.required')}
                                   </span>
                                 )}
                               </div>
-                              <p className="text-sm text-gray-600 mt-1">{category.description}</p>
+                              <p className="text-sm text-gray-600 mt-1">{t(`cookies.categories.${category.id}.description`)}</p>
                             </div>
                             <label className="relative inline-flex items-center cursor-pointer ml-4">
                               <input
@@ -222,13 +207,13 @@ function CookieBanner() {
                         onClick={() => setShowSettings(false)}
                         className="flex-1 px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
                       >
-                        Abbrechen
+                        {t('cookies.cancel')}
                       </button>
                       <button
                         onClick={acceptSelected}
                         className="flex-1 btn-primary"
                       >
-                        Auswahl speichern
+                        {t('cookies.saveSelection')}
                       </button>
                     </div>
                   </div>

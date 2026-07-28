@@ -1,273 +1,269 @@
-# Hotel Rutherbach Website - Agent Guide
+# Hotel Rutherbach Website – Agent Guide
 
-## Project Overview
+## Projektübersicht
 
-This is the official website for **Hotel Rutherbach**, a hotel located in Essen-Kettwig, Germany. It is a modern, responsive, and GDPR-compliant (DSGVO) single-page application built with React and Vite.
+Offizielle Website des **Hotel Rutherbach** in Essen-Kettwig, Deutschland. Eine responsive, DSGVO-konforme Single-Page-Application (One-Pager) mit React und Vite.
 
-**Target Audience:** German-speaking hotel guests looking for accommodation in Essen-Kettwig area.
+**Zielgruppe:** Deutschsprachige Hotelgäste, die eine Unterkunft im Raum Essen-Kettwig suchen.
 
-**Website Language:** German (de)
+**Sprache der Website:** Zweisprachig Deutsch/Englisch über i18next (siehe Abschnitt „Internationalisierung"). Default ist Deutsch (formelle „Sie"-Ansprache). Code-Kommentare sind teils deutsch, teils englisch.
 
----
-
-## Technology Stack
-
-| Category | Technology | Version |
-|----------|------------|---------|
-| Framework | React | 18.2.0 |
-| Build Tool | Vite | 5.0.0 |
-| Router | React Router DOM | 6.20.0 |
-| Styling | Tailwind CSS | 3.3.5 |
-| Animations | Framer Motion | 10.16.5 |
-| Icons | Lucide React | 0.294.0 |
-| Hosting | Netlify | - |
+**Architektur:** Die Startseite ist ein One-Pager mit Anker-Navigation (Smooth Scroll zu Sections wie `#zimmer`, `#kontakt`). React Router wird nur für die Unterseiten `/datenschutz`, `/impressum` und die 404-Seite genutzt.
 
 ---
 
-## Project Structure
+## Technologie-Stack
+
+| Kategorie | Technologie | Version |
+|-----------|-------------|---------|
+| Framework | React | ^18.2.0 |
+| Build-Tool | Vite | ^5.0.0 |
+| Router | React Router DOM | ^6.20.0 |
+| Styling | Tailwind CSS | ^3.3.5 |
+| Animationen | Framer Motion | ^10.16.5 |
+| Icons | Lucide React | ^0.294.0 |
+| Internationalisierung | react-i18next + i18next + i18next-browser-languagedetector | – |
+| Formular-Backend | Web3Forms API (extern) | – |
+| Buchungs-Engine | RoomRaccoon (extern, verlinkt) | – |
+| Hosting | Netlify | – |
+
+`package.json` hat `"type": "module"` – alle Config-Dateien und Quelldateien verwenden ES-Module.
+
+---
+
+## Projektstruktur
 
 ```
 hotel-rutherbach/
-├── public/                    # Static assets
-│   └── images/               # Hotel images (TODO: populate with real images)
+├── public/
+│   ├── images/               # Echte Bilder, nach Kategorien gruppiert:
+│   │   ├── apartments/       # ap1–ap3.jpg
+│   │   ├── doppelzimmer/     # dz1–dz4.jpg
+│   │   ├── einzelzimmer/     # ez01.jpg
+│   │   ├── komfort/          # kdz1–kdz2.jpg
+│   │   ├── frühstück/        # fs*.jpeg (Ordnername enthält Umlaut!)
+│   │   ├── hero.webp, uberuns.webp, logo.jpeg
+│   ├── robots.txt
+│   └── sitemap.xml
 ├── src/
-│   ├── components/           # Reusable React components
-│   │   ├── Layout.jsx        # Page layout wrapper (Header + Footer)
-│   │   ├── Header.jsx        # Navigation header with mobile menu
-│   │   ├── Footer.jsx        # Footer with contact info and links
-│   │   ├── Hero.jsx          # Hero section for homepage
-│   │   ├── RoomCard.jsx      # Room display card component
-│   │   ├── RoomsList.jsx     # Room listing with data export
-│   │   ├── ContactForm.jsx   # Contact form with Netlify Forms
-│   │   └── CookieBanner.jsx  # GDPR cookie consent banner
-│   ├── pages/                # Page components (routes)
-│   │   ├── Home.jsx          # Homepage
-│   │   ├── Rooms.jsx         # Room listing page
-│   │   ├── About.jsx         # About us page
-│   │   ├── Contact.jsx       # Contact page with map
-│   │   ├── Privacy.jsx       # Datenschutzerklärung (GDPR)
-│   │   └── Impressum.jsx     # Legal notice (German law)
+│   ├── components/           # Wiederverwendbare Komponenten
+│   │   ├── Layout.jsx        # Wrapper: Header + <Outlet /> + Footer
+│   │   ├── Header.jsx        # Fixierte Anker-Navigation + Sprach-Umschalter (DE/EN)
+│   │   ├── Footer.jsx
+│   │   ├── Hero.jsx          # Hero-Section (#start)
+│   │   ├── AboutSection.jsx  # Über-uns-Section (#ueber-uns)
+│   │   ├── RoomsSection.jsx  # Zimmer-Übersicht mit Modal (#zimmer), nutzt data/rooms.js
+│   │   ├── BreakfastSection.jsx
+│   │   ├── FeaturesSection.jsx
+│   │   ├── LocationSection.jsx  # Google-Maps-Embed (#lage)
+│   │   ├── ContactForm.jsx   # Kontaktformular via Web3Forms (#kontakt)
+│   │   ├── CookieBanner.jsx  # DSGVO-Consent-Banner
+│   │   └── ImageSwiper.jsx   # Bild-Galerie-Komponente
+│   ├── data/
+│   │   └── rooms.js          # Kanonische Zimmerdaten (roomsData, BREAKFAST_PRICE), zweisprachig
+│   ├── i18n/                 # Internationalisierung (DE/EN)
+│   │   ├── index.js          # i18n-Init (fallbackLng 'de', localStorage-Detect)
+│   │   ├── de.json           # Deutsche Übersetzungen (Quellsprache)
+│   │   └── en.json           # Englische Übersetzungen
+│   ├── pages/                # Seitenkomponenten (Routes)
+│   │   ├── Home.jsx          # One-Pager: reiht alle Sections aneinander
+│   │   ├── Privacy.jsx       # Datenschutzerklärung (/datenschutz), DE+EN
+│   │   ├── Impressum.jsx     # Impressum (/impressum), DE+EN
+│   │   └── NotFound.jsx      # 404-Seite
 │   ├── styles/
-│   │   └── index.css         # Global styles + Tailwind directives
-│   ├── App.jsx               # Main app with route definitions
-│   └── main.jsx              # Entry point
-├── index.html                # HTML template
-├── package.json              # Dependencies and scripts
-├── tailwind.config.js        # Tailwind customization
-├── vite.config.js            # Vite configuration
-├── postcss.config.js         # PostCSS config for Tailwind
-└── netlify.toml              # Netlify deployment config
+│   │   └── index.css         # Tailwind-Direktiven + Custom Utility/Component Classes
+│   ├── App.jsx               # Route-Definitionen + CookieBanner
+│   └── main.jsx              # Entry Point (BrowserRouter, StrictMode)
+├── index.html                # HTML-Template mit SEO-Meta, JSON-LD, Google Tag
+├── package.json
+├── vite.config.js
+├── tailwind.config.js
+├── postcss.config.js
+├── netlify.toml
+└── README.md                 # Teils veraltet (beschreibt noch Bild-Platzhalter)
 ```
+
+### Legacy-Dateien entfernt
+
+Die früheren Dead-Code-Dateien (`pages/About.jsx`, `pages/Contact.jsx`, `pages/Rooms.jsx`, `components/RoomsList.jsx`, `components/RoomCard.jsx`) wurden im Juli 2026 gelöscht. Die aktuellen Zimmerdaten stehen ausschließlich in `src/data/rooms.js`.
 
 ---
 
-## Available Scripts
+## Build & Entwicklung
+
+Voraussetzung: Node.js 18+ (in `netlify.toml` festgelegt), npm.
 
 ```bash
-# Start development server (http://localhost:5173)
-npm run dev
-
-# Build for production (outputs to /dist)
-npm run build
-
-# Preview production build locally
-npm run preview
-
-# Run ESLint
-npm run lint
+npm install        # Dependencies installieren
+npm run dev        # Dev-Server auf http://localhost:5173
+npm run build      # Production-Build nach /dist (inkl. Sourcemaps)
+npm run preview    # Production-Build lokal testen
+npm run lint       # ⚠ FUNKTIONIERT NICHT: es existiert keine ESLint-Konfigurationsdatei
 ```
 
----
-
-## Build & Development
-
-### Prerequisites
-- Node.js 18+ (specified in netlify.toml)
-- npm
-
-### Development Workflow
-1. Run `npm install` to install dependencies
-2. Run `npm run dev` to start the development server
-3. Open http://localhost:5173 in your browser
-
-### Production Build
-```bash
-npm run build
-```
-Output is generated in the `/dist` folder, which is configured as the publish directory in Netlify.
-
----
-
-## Code Style Guidelines
-
-### General Conventions
-- **Language:** All UI text is in German
-- **File naming:** PascalCase for components (e.g., `ContactForm.jsx`)
-- **Component structure:** Functional components with default exports
-- **Imports:** React hooks first, then external libraries, then internal components
-
-### Tailwind CSS Patterns
-- Use custom color tokens defined in `tailwind.config.js`:
-  - `primary` (#131a34) - Main background
-  - `primary-light` (#1c2547) - Card backgrounds
-  - `accent` (#f3d993) - Buttons, highlights
-  - `accent-hover` (#e8cc7d) - Hover states
-- Custom utility classes defined in `index.css`:
-  - `.btn-primary` - Primary CTA button style
-  - `.btn-secondary` - Secondary/outline button style
-  - `.form-input` - Form input styling
-  - `.form-label` - Form label styling
-
-### Accessibility Requirements
-- All interactive elements must be keyboard-navigable
-- Include ARIA labels for icons and buttons
-- Use `focus-visible` styles (configured in index.css)
-- Respect `prefers-reduced-motion` (configured in index.css)
-- Maintain sufficient color contrast (white text on dark backgrounds)
-
-### Animation Guidelines
-- Use Framer Motion for all animations
-- Always check `useReducedMotion()` before applying motion effects
-- Use `viewport={{ once: true }}` for scroll-triggered animations
-- Standard animation durations: 0.3s - 0.6s
-
----
-
-## Key Components Reference
-
-### Room Data
-Room information is defined in `src/components/RoomsList.jsx` as `roomsData` array:
-
-```javascript
-{
-  id: 'apartment-2zimmer',
-  name: 'Apartment (ca. 60 m²)',
-  description: '2 getrennte Schlafzimmer, je 1 Doppelbett, Küche',
-  price: 150,
-  image: '/images/apartment-2zimmer.jpg',
-  amenities: ['Doppelbett', 'Dusche/WC', 'Farb TV', 'W-LAN', 'Parkplatz', 'Täglicher Service'],
-}
-```
-
-### Contact Form
-- Uses Netlify Forms (handled automatically by Netlify)
-- Form name: `contact`
-- Includes honeypot field for spam protection (`bot-field`)
-- Requires DSGVO consent checkbox
-- Fields: name, email, telefon, zimmer, anreise, abreise, gaeste, nachricht, dsgvo, kopie
-
-### Cookie Banner
-- Stores consent in localStorage with key: `hotel-rutherbach-consent`
-- Categories: essential (required), statistics, marketing
-- Emits custom event `cookieConsentChanged` on consent change
+Verifiziert (Stand: aktueller Workspace): `npm install` und `npm run build` laufen fehlerfrei durch. `npm run lint` schlägt fehl, weil zwar ESLint-Plugins in den devDependencies stehen, aber keine `.eslintrc*`/`eslint.config.*`-Datei im Repo existiert. Es gibt **keine automatisierten Tests** (kein Test-Runner, keine Test-Dateien) – Testing erfolgt manuell anhand der Checkliste weiter unten.
 
 ---
 
 ## Routing
 
-| Path | Component | Description |
-|------|-----------|-------------|
-| `/` | Home | Homepage with hero, features, rooms preview, contact form |
-| `/zimmer` | Rooms | Room listing with pricing |
-| `/ueber-uns` | About | About the hotel and philosophy |
-| `/kontakt` | Contact | Contact page with form and map |
-| `/datenschutz` | Privacy | GDPR privacy policy |
-| `/impressum` | Impressum | Legal notice (German law requirement) |
+| Pfad | Komponente | Beschreibung |
+|------|------------|--------------|
+| `/` | Home | One-Pager mit allen Sections |
+| `/datenschutz` | Privacy | Datenschutzerklärung (DSGVO) |
+| `/impressum` | Impressum | Impressum (deutsches Recht) |
+| `*` | NotFound | 404-Seite |
+
+Die Hauptnavigation in `Header.jsx` nutzt **keine Router-Links**, sondern scrollt per `getElementById` + `window.scrollTo` zu Section-IDs: `start`, `ueber-uns`, `zimmer`, `fruehstueck`, `lage`, `kontakt` (80px Offset für die fixierte Header-Höhe). Neue Sections müssen diese ID-Konvention einhalten, damit die Navigation und die Active-Section-Erkennung funktionieren.
 
 ---
 
-## Deployment
+## Zentrale Daten & Komponenten
 
-### Netlify Configuration
-Configured in `netlify.toml`:
-- Build command: `npm run build`
-- Publish directory: `dist`
-- Node version: 18
-- SPA redirect rules included (all routes → index.html)
+### Zimmerdaten (`src/data/rooms.js`)
 
-### Environment Variables
-None currently required.
+Kanonische Datenquelle: `roomsData` (10 Zimmer/Apartments) und `BREAKFAST_PRICE` (15 €/Nacht). Die übersetzbaren Felder sind zweisprachig als `{ de, en }` hinterlegt, `amenities` enthält i18n-Keys. Struktur pro Zimmer:
 
-### Forms Setup
-Netlify Forms are automatically detected. After deployment:
-1. Go to Netlify Dashboard → Forms
-2. Configure form notifications email to: info@hotel-rutherbach.de
+```javascript
+{
+  id: 'apartment-gross',
+  name: { de: 'Apartment 8', en: 'Apartment 8' },
+  roomNumber: 'A1',
+  size: { de: 'ca. 60 m²', en: 'approx. 60 m²' },
+  description: { de: '...', en: '...' },
+  maxGuests: 4,
+  beds: { de: '2x Doppelbett', en: '2x double bed' },
+  price: 135,                        // € pro Nacht
+  image: '/images/apartments/ap1.jpg',
+  amenities: ['kitchen', 'showerWc', ...],  // Keys → t(`amenities.${key}`)
+  bookingUrl: 'https://booking.roomraccoon.de/hotel-rutherbach/de/#128059'
+}
+```
 
----
+Preis-/Datenänderungen nur hier vornehmen – `RoomsSection.jsx` und `ContactForm.jsx` lesen beide aus dieser Datei. Amenity-Übersetzungen stehen zentral unter `amenities.*` in den i18n-Dateien (dedupliziert); bei neuen Amenities Key in beiden JSON-Dateien ergänzen.
 
-## Testing Checklist
+### Kontaktformular (`src/components/ContactForm.jsx`)
 
-Before deploying, verify:
-- [ ] `npm install` + `npm run dev` starts without errors
-- [ ] All pages are navigable via menu and direct URL
-- [ ] Contact form shows validation errors for required fields
-- [ ] Cookie banner appears on first visit (clear localStorage to test)
-- [ ] Mobile navigation (hamburger menu) works correctly
-- [ ] Images load correctly (after adding real images to `/public/images/`)
-- [ ] All links work (internal navigation + external links)
-- [ ] Form submission works (test on deployed Netlify site)
+- Sendet per `fetch` an die **Web3Forms API** (`https://api.web3forms.com/submit`) – **nicht** Netlify Forms.
+- Der Access Key liegt hardcodiert als Konstante `WEB3FORMS_ACCESS_KEY` oben in der Datei (öffentlich sichtbarer Key, das ist bei Web3Forms vorgesehen).
+- Clientseitige Validierung (Name, E-Mail, Zimmertyp, Nachricht, DSGVO-Checkbox) mit übersetzten Fehlermeldungen (`contact.errors.*`).
+- Honeypot-Feld `botcheck` als Spam-Schutz.
+- Unterstützt URL-Parameter `?zimmer=<id>` zur Vorauswahl des Zimmertyps (via `useSearchParams`). Matching erfolgt gegen `room.id`, rückwärtskompatibel auch gegen den deutschen Namen (`room.name.de`). Im Select ist der Wert die Zimmer-ID; beim Versand wird der deutsche Name in die E-Mail übernommen.
 
----
+### Cookie-Banner (`src/components/CookieBanner.jsx`)
 
-## Known Issues & TODOs
+- Consent wird in `localStorage` unter dem Key `hotel-rutherbach-consent` als JSON gespeichert (`{essential, statistics, marketing}`).
+- Kategorien: `essential` (erforderlich, nicht abwählbar), `statistics`, `marketing`.
+- Feuert bei Änderung das Custom Event `cookieConsentChanged` (mit dem Consent-Objekt als `detail`).
 
-### Image Placeholders
-Currently using placeholder gradients with "TODO" text. Real images need to be added to `/public/images/`:
+### Google Analytics (`index.html`)
 
-| Filename | Usage | Recommended Size |
-|----------|-------|------------------|
-| `hero.jpg` | Hero background | 1920x1080px |
-| `about.jpg` | About page | 800x1000px |
-| `location.jpg` | Location/map section | 800x600px |
-| `apartment-2zimmer.jpg` | Room card | 800x600px |
-| `apartment-empore.jpg` | Room card | 800x600px |
-| `doppelzimmer.jpg` | Room card | 800x600px |
-| `komfort-doppelzimmer.jpg` | Room card | 800x600px |
-| `einzelzimmer.jpg` | Room card | 800x600px |
+- Google Tag `G-KHS034GVZ1` wird **nur nach Consent** geladen: Ein Inline-Script in `index.html` prüft den localStorage-Consent beim Seitenstart und lauscht auf `cookieConsentChanged`. Statistik/Marketing-Consent → gtag wird dynamisch eingebunden.
+- `index.html` enthält außerdem SEO-Meta-Tags, Open Graph, Canonical URL und JSON-LD Structured Data (`@type: Hotel`). Die Meta-Tags bleiben bewusst statisch deutsch; nur das `lang`-Attribut wird per JS gesetzt (siehe i18n).
 
-### Impressum Page
-- USt-IdNr. (VAT ID) needs to be added (marked as "[Bitte einfügen]")
+### Internationalisierung (`src/i18n/`)
 
-### Google Maps
-- Embed URL in Contact.jsx uses placeholder coordinates
-- Update with actual hotel coordinates when available
+- **Bibliotheken:** `react-i18next`, `i18next`, `i18next-browser-languagedetector`. Init in `src/i18n/index.js`, importiert in `src/main.jsx`.
+- **Sprachen:** `de` (Quellsprache, Default/fallback) und `en`. Übersetzungen in `src/i18n/de.json` / `src/i18n/en.json`, verschachtelt nach Komponenten (`nav`, `hero`, `about`, `features`, `rooms`, `amenities`, `breakfast`, `location`, `contact`, `footer`, `cookies`, `notFound`, `privacy`, `impressum`, `common`, `langSwitcher`). Beide Dateien müssen schlüsselgleich bleiben.
+- **Detection:** Nur `localStorage` (Key `hotel-rutherbach-lang`), kein `navigator`-Detect – Erstsprache ist garantiert Deutsch. `fallbackLng: 'de'`.
+- **Umschalter:** In `Header.jsx` (Komponente `LanguageSwitcher`) – Desktop neben der Navigation und im mobilen Hamburger-Menü, Flaggen 🇩🇪/🇬🇧, aktive Sprache in accent-Farbe.
+- **`lang`-Attribut:** `document.documentElement.lang` wird initial und bei jedem `languageChanged`-Event gesetzt.
+- **Zimmertexte:** Stehen als `{ de, en }` direkt in `src/data/rooms.js`; Komponenten wählen per `i18n.language` das Feld. Amenities werden per `t(\`amenities.${key}\`)` aufgelöst.
+- **Rechtsseiten:** Auf Englisch zeigen Privacy/Impressum oben einen Hinweis, dass die deutsche Version rechtlich bindend ist.
+- Neue UI-Texte immer in beide JSON-Dateien aufnehmen, nie hardcodieren. Listen (z. B. Features) via `t('...', { returnObjects: true })`.
 
 ---
 
-## Legal & Compliance
+## Code-Konventionen
 
-### GDPR (DSGVO) Compliance
-- Cookie consent banner with category selection
-- Consent stored in localStorage
-- Contact form includes DSGVO checkbox
-- Privacy policy page (`/datenschutz`)
-- No tracking without explicit consent
+### Allgemein
+- **Sprache:** UI-Texte kommen aus den i18n-Dateien (`de.json` = Quellsprache, formelle „Sie"-Ansprache; `en.json` = Übersetzung). Code-Kommentare überwiegend deutsch.
+- **Dateinamen:** PascalCase für Komponenten (z. B. `ContactForm.jsx`), camelCase für Datenmodule (`rooms.js`).
+- **Komponenten:** Funktionale Komponenten mit Default-Export, Hooks am Anfang.
+- **Kein TypeScript** – reines JSX (obwohl `@types/react` in den devDependencies steht).
 
-### Required German Legal Pages
-- `/impressum` - Legal notice with contact info, VAT ID, etc.
-- `/datenschutz` - Privacy policy
+### Tailwind / Styling
+Farb-Tokens aus `tailwind.config.js` verwenden:
+- `primary` (#131a34) – dunkler Haupt-Hintergrund
+- `primary-light` (#1c2547) – Karten-Hintergründe
+- `accent` (#f3d993) – Buttons, Highlights
+- `accent-hover` (#e8cc7d), `accent-dark` (#c9a227) – Hover/Akzente auf hellem Grund
+- Schriftart: Inter (Google Fonts, in `index.html` eingebunden)
+
+Custom Classes aus `src/styles/index.css`:
+- `.btn-primary`, `.btn-secondary` – Button-Styles (`@layer components`)
+- `.form-input`, `.form-label` – Formular-Styles
+- `.blue-island` / `.blue-island-static` – dunkle Karten mit 3D-Schatten auf weißen Sections
+- `.glass-card` – Glassmorphism für den Hero
+- `.section-white`, `.gradient-overlay`, `.text-shadow` – Utilities
+
+Design-Pattern: Abwechselnd dunkle (`bg-primary`) und weiße Sections; dunkle „schwebende" Karten (`.blue-island`) auf weißem Grund.
+
+### Accessibility & Animationen
+- Alle Icon-Buttons brauchen `aria-label`; Formularfelder nutzen `aria-invalid`/`aria-describedby`.
+- `focus-visible`-Ring global in `index.css` definiert.
+- `prefers-reduced-motion` wird in `index.css` global respektiert (Animationen auf 0.01ms reduziert).
+- Framer Motion für alle Animationen; Scroll-Animationen mit `viewport={{ once: true }}`; Dauer typisch 0,3–0,6 s.
 
 ---
 
-## Contact Information
+## Deployment (Netlify)
 
-**Hotel Owner:** Makyan Saeed  
-**Business Name:** HOTEL RUTHERBACH  
-**Address:** Ruhrtalstraße 215 - 217, D-45219 Essen-Kettwig  
-**Phone:** 0201 - 40 88 39 18  
-**Email:** info@hotel-rutherbach.de  
+Konfiguriert in `netlify.toml`:
+- Build-Command: `npm run build`
+- Publish-Directory: `dist`
+- Node-Version: 18
+- SPA-Redirect: `/* → /index.html` (Status 200)
+
+`vite.config.js` setzt `base: '/'` und aktiviert Sourcemaps im Build. Es gibt **keine Umgebungsvariablen** und keine serverseitigen Funktionen – die Seite ist rein statisch; Formularversand und Buchung laufen über externe Dienste (Web3Forms, RoomRaccoon).
+
+---
+
+## Sicherheit & Compliance (DSGVO)
+
+- **Kein Tracking ohne Consent:** Google Analytics wird erst nach Opt-in geladen (siehe oben).
+- **Kontaktformular** erfordert DSGVO-Zustimmung (Checkbox) und nutzt ein Honeypot-Feld gegen Spam.
+- **Web3Forms Access Key** ist im Client-Code sichtbar – das ist das vorgesehene Modell von Web3Forms; der Key darf trotzdem nicht gegen einen privaten/anderen Key ausgetauscht oder für andere Zwecke wiederverwendet werden.
+- Keine Secrets/Env-Dateien im Projekt; `.gitignore` deckt `node_modules`, `dist` etc. ab.
+- Rechtlich vorgeschriebene Seiten: `/impressum` und `/datenschutz` müssen erhalten bleiben.
+
+---
+
+## Manuelle Testing-Checkliste
+
+Es gibt kein Test-Framework – vor einem Deploy manuell prüfen:
+
+- [ ] `npm install` + `npm run dev` startet ohne Fehler
+- [ ] `npm run build` läuft durch
+- [ ] Alle Sections sind über die Anker-Navigation erreichbar (Desktop + mobiles Hamburger-Menü)
+- [ ] Direktaufruf von `/datenschutz` und `/impressum` funktioniert (SPA-Redirect)
+- [ ] Kontaktformular zeigt Validierungsfehler für Pflichtfelder
+- [ ] Cookie-Banner erscheint beim ersten Besuch (zum Testen localStorage löschen)
+- [ ] Sprach-Umschalter (Desktop + mobil) wechselt alle Texte DE ↔ EN; Auswahl bleibt nach Reload erhalten (localStorage `hotel-rutherbach-lang`); `lang`-Attribut im `<html>` wechselt mit
+- [ ] Google Tag wird erst nach Consent geladen (Netzwerk-Tab prüfen)
+- [ ] Zimmer-Buchungsbuttons verlinken auf die korrekten RoomRaccoon-URLs
+- [ ] Bilder laden korrekt
+
+---
+
+## Bekannte Issues & TODOs
+
+1. **`npm run lint` defekt:** Keine ESLint-Konfigurationsdatei im Repo (siehe oben).
+2. **USt-IdNr. fehlt:** In `src/pages/Impressum.jsx` als „[Bitte einfügen]" markiert.
+3. **Google-Maps-Embed:** Die Embed-URL in `LocationSection.jsx` enthält noch Platzhalter-Koordinaten; der „Route planen"-Link nutzt eine Maps-Suche nach der Hoteladresse.
+4. **README.md teils veraltet:** beschreibt noch Bild-Platzhalter und Netlify Forms – Bilder sind inzwischen eingebunden, das Formular nutzt Web3Forms.
+
+---
+
+## Kontaktinformationen
+
+**Inhaber:** Makyan Saeed
+**Firma:** HOTEL RUTHERBACH
+**Adresse:** Ruhrtalstraße 215–217, D-45219 Essen-Kettwig
+**Telefon:** 0201 - 40 88 39 18
+**E-Mail:** info@hotel-rutherbach.de
 **Website:** www.hotel-rutherbach.de
 
 ---
 
-## Performance Notes
-
-- Images should be optimized (WebP format recommended)
-- Lazy loading implemented for below-fold images
-- Animations respect `prefers-reduced-motion`
-- Code splitting through React Router
-- Build optimized by Vite
-
----
-
-*Last Updated: February 2026*
+*Zuletzt aktualisiert: Juli 2026*

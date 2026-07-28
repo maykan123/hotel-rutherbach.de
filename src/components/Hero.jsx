@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { ChevronDown, Phone, MapPin, Mail, ExternalLink } from 'lucide-react'
 
 function Hero() {
+  const { t } = useTranslation()
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id)
     if (element) {
@@ -68,7 +71,7 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-accent font-semibold tracking-wider uppercase mb-4 text-sm sm:text-base"
           >
-            Hotel in Essen-Kettwig
+            {t('hero.kicker')}
           </motion.p>
 
           <motion.h1
@@ -77,8 +80,8 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 text-shadow"
           >
-            Willkommen im{' '}
-            <span className="text-accent">Hotel Rutherbach</span>
+            {t('hero.title1')}{' '}
+            <span className="text-accent">{t('hero.titleAccent')}</span>
           </motion.h1>
           
           <motion.p
@@ -87,7 +90,7 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-lg sm:text-2xl md:text-3xl text-gray-200 mb-3 sm:mb-4 font-light"
           >
-            Komfort trifft Ruhe direkt an der Ruhr
+            {t('hero.subtitle')}
           </motion.p>
           
           <motion.p
@@ -96,8 +99,7 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto px-2 sm:px-0"
           >
-            Erleben Sie entspannte Tage in unseren komfortablen Zimmern und Apartments 
-            – mit herzlichem Service und wunderschöner Lage am Ruhrtal.
+            {t('hero.description')}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -112,13 +114,13 @@ function Hero() {
               className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto inline-flex items-center justify-center"
             >
               <ExternalLink size={20} className="mr-2" />
-              Jetzt buchen
+              {t('hero.bookNow')}
             </button>
             <button
               onClick={() => scrollToSection('kontakt')}
               className="btn-secondary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto"
             >
-              Jetzt anfragen
+              {t('hero.inquire')}
             </button>
           </motion.div>
 
@@ -130,7 +132,7 @@ function Hero() {
             className="mt-6 sm:mt-8"
           >
             <span className="inline-block bg-accent/20 text-accent border border-accent/40 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold">
-              💰 Bei Direktbuchung sparen Sie sich die Buchungsgebühren!
+              {t('hero.directBookingBadge')}
             </span>
           </motion.div>
         </motion.div>
@@ -148,7 +150,7 @@ function Hero() {
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           className="cursor-pointer p-2"
           onClick={() => scrollToSection('ueber-uns')}
-          aria-label="Weiter scrollen"
+          aria-label={t('hero.scrollDown')}
         >
           <ChevronDown size={28} className="text-white/60 hover:text-accent transition-colors" />
         </motion.div>

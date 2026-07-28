@@ -1,0 +1,327 @@
+{
+  "nav": {
+    "start": "Startseite",
+    "ueber-uns": "Über uns",
+    "zimmer": "Zimmer",
+    "fruehstueck": "Frühstück",
+    "lage": "Lage",
+    "kontakt": "Kontakt",
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schließen"
+  },
+  "langSwitcher": {
+    "label": "Sprache wechseln / Switch language",
+    "de": "Deutsch",
+    "en": "English"
+  },
+  "hero": {
+    "kicker": "Hotel in Essen-Kettwig",
+    "title1": "Willkommen im",
+    "titleAccent": "Hotel Rutherbach",
+    "subtitle": "Komfort trifft Ruhe direkt an der Ruhr",
+    "description": "Erleben Sie entspannte Tage in unseren komfortablen Zimmern und Apartments – mit herzlichem Service und wunderschöner Lage am Ruhrtal.",
+    "bookNow": "Jetzt buchen",
+    "inquire": "Jetzt anfragen",
+    "directBookingBadge": "💰 Bei Direktbuchung sparen Sie sich die Buchungsgebühren!",
+    "scrollDown": "Weiter scrollen"
+  },
+  "about": {
+    "imageAlt": "Hotel Rutherbach Außenansicht",
+    "statsValue": "10",
+    "statsLabel": "Komfortable Zimmer",
+    "title1": "Willkommen im",
+    "titleAccent": "Hotel Rutherbach",
+    "p1": "Das Hotel Rutherbach liegt idyllisch direkt an der Ruhr in Essen-Kettwig. Seit vielen Jahren begrüßen wir Gäste aus aller Welt und bieten Ihnen einen erholsamen Aufenthalt in familiärer Atmosphäre.",
+    "p2": "Unser Haus vereint die Vorteile einer ruhigen Lage am Ruhrtal mit der Nähe zum historischen Stadtkern von Kettwig. Egal ob Sie geschäftlich unterwegs sind oder Urlaub machen – bei uns finden Sie die perfekte Unterkunft.",
+    "p3": "Jedes unserer Zimmer ist individuell eingerichtet und bietet Ihnen alle Annehmlichkeiten für einen komfortablen Aufenthalt. Starten Sie den Tag mit einem reichhaltigen Frühstücksbuffet und genießen Sie den Blick auf die Ruhr.",
+    "features": {
+      "family": "Familiäre Atmosphäre",
+      "river": "Direkt an der Ruhr",
+      "service": "Persönlicher Service",
+      "renovation": "Wird derzeit umfassend revitalisiert"
+    }
+  },
+  "features": {
+    "title1": "Ausstattung &",
+    "titleAccent": "Service",
+    "subtitle": "Damit Sie sich bei uns rundum wohlfühlen, bieten wir Ihnen alle Annehmlichkeiten für einen entspannten Aufenthalt.",
+    "items": [
+      { "title": "Highspeed WLAN", "description": "Kostenloses WLAN in allen Zimmern und öffentlichen Bereichen" },
+      { "title": "Kostenlose Parkplätze", "description": "Ausreichend Parkplätze direkt am Hotel für alle Gäste" },
+      { "title": "Smart TV & Streaming", "description": "Smart TV mit HD Kanälen und Streaming Diensten in jedem Zimmer" },
+      { "title": "Täglicher Service", "description": "Ihr Zimmer wird täglich frisch gereinigt" },
+      { "title": "Frühstück", "description": "Reichhaltiges Frühstücksbuffet täglich 7:30 - 10:30 Uhr" },
+      { "title": "Flexible Zeiten", "description": "Anreise ab 15:00 Uhr, Abreise bis 11:00 Uhr" },
+      { "title": "Top Lage", "description": "Direkt an der Ruhr, nur 5 Min. zum Stadtkern" },
+      { "title": "Nichtraucher", "description": "Alle Zimmer sind Nichtraucherzimmer" },
+      { "title": "Gepäckaufbewahrung", "description": "Sichere Aufbewahrung Ihres Gepäcks vor Anreise oder nach Abreise" },
+      { "title": "Sekt Empfang", "description": "Willkommenssekt bei Ankunft für einen perfekten Start" },
+      { "title": "Hochzeitsfrühstück", "description": "Besonderes Frühstückserlebnis für frischvermählte Paare" },
+      { "title": "Getränkeservice", "description": "Kühle Getränke und Snacks rund um die Uhr verfügbar" },
+      { "title": "Fahrradfahrer willkommen", "description": "Idealer Ausgangspunkt für Radtouren entlang der Ruhr" },
+      { "title": "Lunch Pakete", "description": "Verpflegungspakete für unterwegs – perfekt für Radfahrer" },
+      { "title": "Veranstaltungsraum", "description": "Raum Miete für Veranstaltungen inklusive Frühstück Catering" },
+      { "title": "Late Check-out", "description": "Spätere Abreise auf Anfrage möglich" },
+      { "title": "Beistellbetten", "description": "Zusätzliche Betten für Kinder auf Anfrage verfügbar" }
+    ]
+  },
+  "rooms": {
+    "title1": "Unsere",
+    "titleAccent": "Zimmer",
+    "subtitle": "Wählen Sie aus 10 individuell eingerichteten Zimmern und Apartments. Jedes Zimmer bietet Ihnen den Komfort für einen erholsamen Aufenthalt.",
+    "directBookingNote": "Bei Direktbuchung sparen Sie sich die Buchungsgebühren!",
+    "fromPrice": "ab {{price}} €",
+    "upToGuests": "bis {{count}}",
+    "perNight": "pro Nacht",
+    "size": "Größe",
+    "maxGuests": "Max. Gäste",
+    "guests_one": "{{count}} Person",
+    "guests_other": "{{count}} Personen",
+    "beds": "Betten",
+    "amenitiesTitle": "Ausstattung",
+    "bookNow": "Jetzt buchen",
+    "close": "Schließen"
+  },
+  "amenities": {
+    "kitchen": "Küche",
+    "kitchenette": "Kochnische",
+    "showerWc": "Dusche/WC",
+    "smartTv": "Smart TV",
+    "hdChannels": "HD Kanäle",
+    "streaming": "Streaming",
+    "wlan": "W-LAN",
+    "parking": "Parkplatz",
+    "dailyService": "Täglicher Service",
+    "twoRooms": "2 Räume"
+  },
+  "breakfast": {
+    "imageAlt": "Frühstücksraum",
+    "title1": "Starten Sie mit einem",
+    "titleAccent": "guten Frühstück",
+    "description": "Unser reichhaltiges Frühstücksbuffet lässt keine Wünsche offen. Genießen Sie in unserem hellen Frühstücksraum einen perfekten Start in den Tag. Wir legen großen Wert auf Frische und Qualität unserer Produkte.",
+    "priceNote": "Frühstück: {{price}} € pro Nacht",
+    "features": [
+      { "title": "Kaffee & Tee", "description": "Verschiedene Kaffee- und Teesorten" },
+      { "title": "Herzhaftes", "description": "Wurst, Käse, Eiergerichte" },
+      { "title": "Süßes", "description": "Brötchen, Müsli, Joghurt" },
+      { "title": "Zeiten", "description": "Täglich: 7:30 - 10:30 Uhr" }
+    ]
+  },
+  "location": {
+    "title1": "Perfekte Lage in",
+    "titleAccent": "Essen-Kettwig",
+    "description": "Das Hotel Rutherbach liegt idyllisch direkt an der Ruhr, mit herrlichem Blick auf das Ruhrtal. Genießen Sie die Ruhe und Natur, während Sie dennoch nur wenige Minuten vom Stadtzentrum entfernt sind.",
+    "features": [
+      { "title": "Direkt an der Ruhr", "description": "Ruhrpromenade direkt vor der Tür – ideal für Spaziergänge und Jogging" },
+      { "title": "Historischer Stadtkern", "description": "Nur 5 Minuten Fußweg zur malerischen Kettwiger Altstadt" },
+      { "title": "Gute Anbindung", "description": "Schnell zur A52 und A40 – Essen Zentrum in 15 Min." },
+      { "title": "ÖPNV", "description": "Buslinie direkt am Hotel, S-Bahn Kettwig in 10 Min. Fußweg" }
+    ],
+    "showOnMaps": "Auf Google Maps anzeigen",
+    "mapTitle": "Hotel Rutherbach auf Google Maps",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "breakfast": "Frühstück",
+    "addressTitle": "Adresse",
+    "phoneLabel": "Telefon:"
+  },
+  "contact": {
+    "title1": "Kontakt &",
+    "titleAccent": "Anfrage",
+    "subtitle": "Senden Sie uns Ihre Anfrage – wir melden uns schnellstmöglich bei Ihnen.",
+    "directBookingNote": "Bei Direktbuchung über uns sparen Sie sich die Buchungsgebühren!",
+    "successTitle": "Vielen Dank für Ihre Anfrage!",
+    "successText": "Wir haben Ihre Nachricht erhalten und werden uns in Kürze bei Ihnen melden.",
+    "successConfirmation": "Eine Bestätigung wurde an Ihre E-Mail-Adresse gesendet.",
+    "labels": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "optional": "(optional)",
+      "roomType": "Gewünschter Zimmer-Typ",
+      "arrival": "Anreise",
+      "departure": "Abreise",
+      "guests": "Gästeanzahl",
+      "message": "Nachricht"
+    },
+    "placeholders": {
+      "name": "Ihr vollständiger Name",
+      "email": "ihre@email.de",
+      "phone": "0201 - 123456",
+      "message": "Ihre Nachricht oder besondere Wünsche..."
+    },
+    "selectRoom": "Bitte wählen",
+    "guests_one": "{{count}} Person",
+    "guests_other": "{{count}} Personen",
+    "gdprText": "Ich stimme der Speicherung meiner Daten zu, damit das Hotel mich kontaktieren kann.",
+    "privacyLink": "Datenschutzerklärung",
+    "breakfastNote": "🍳 Frühstück:",
+    "breakfastNoteText": "{{price}} € pro Nacht (optional)",
+    "sending": "Wird gesendet...",
+    "submit": "Anfrage senden",
+    "savingsTip": "💰 Spar-Tipp:",
+    "savingsTipText": "Bei Direktbuchung über unsere Website sparen Sie sich die Buchungsgebühren externer Plattformen!",
+    "requiredFields": "Pflichtfelder",
+    "errors": {
+      "name": "Bitte geben Sie Ihren Namen ein.",
+      "emailRequired": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "room": "Bitte wählen Sie einen Zimmertyp.",
+      "message": "Bitte geben Sie eine Nachricht ein.",
+      "gdpr": "Bitte stimmen Sie der Datenspeicherung zu.",
+      "submit": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder rufen Sie uns an: 0201 - 40 88 39 18"
+    },
+    "mailSubject": "Neue Anfrage: {{room}} - {{name}}"
+  },
+  "footer": {
+    "contactTitle": "Kontakt",
+    "checkInOut": "Check-in ab 15:00 · Check-out bis 11:00",
+    "quickLinks": "Schnelllinks",
+    "legal": "Rechtliches",
+    "impressum": "Impressum",
+    "privacy": "Datenschutz",
+    "rights": "© {{year}} Hotel Rutherbach. Alle Rechte vorbehalten."
+  },
+  "cookies": {
+    "title": "Datenschutzeinstellungen",
+    "description": "Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. Sie können Ihre Präferenzen anpassen oder alle Cookies akzeptieren. Weitere Informationen finden Sie in unserer",
+    "privacyLink": "Datenschutzerklärung",
+    "settings": "Einstellungen",
+    "essentialOnly": "Nur Essenzielle",
+    "acceptAll": "Alle akzeptieren",
+    "modalTitle": "Cookie-Einstellungen",
+    "close": "Schließen",
+    "required": "Erforderlich",
+    "cancel": "Abbrechen",
+    "saveSelection": "Auswahl speichern",
+    "categories": {
+      "essential": {
+        "name": "Essentiell",
+        "description": "Notwendige Cookies für die grundlegende Funktionalität der Website."
+      },
+      "statistics": {
+        "name": "Statistik",
+        "description": "Helfen uns zu verstehen, wie Besucher mit der Website interagieren."
+      },
+      "marketing": {
+        "name": "Marketing",
+        "description": "Werden verwendet, um Besuchern relevante Werbung anzuzeigen."
+      }
+    }
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Die von Ihnen gesuchte Seite existiert leider nicht. Vielleicht wurde sie verschoben oder gelöscht.",
+    "backHome": "Zurück zur Startseite",
+    "contactUs": "Kontakt aufnehmen",
+    "orVisit": "Oder besuchen Sie eine dieser Seiten:"
+  },
+  "privacy": {
+    "title1": "Datenschutz",
+    "titleAccent": "erklärung",
+    "translationNote": "This is a translation for information purposes only. The German version is legally binding.",
+    "s1": {
+      "title": "1. Datenschutz auf einen Blick",
+      "subtitle": "Allgemeine Hinweise",
+      "text": "Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können."
+    },
+    "s2": {
+      "title": "2. Verantwortlicher",
+      "phone": "Telefon:",
+      "email": "E-Mail:"
+    },
+    "s3": {
+      "title": "3. Datenerfassung auf dieser Website",
+      "contactFormTitle": "Kontaktformular",
+      "contactFormP1": "Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.",
+      "contactFormP2": "Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist.",
+      "cookiesTitle": "Cookies",
+      "cookiesP1": "Unsere Website verwendet Cookies. Das sind kleine Textdateien, die Ihr Webbrowser auf Ihrem Endgerät speichert. Cookies helfen uns dabei, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen.",
+      "cookiesP2": "Einige Cookies sind technisch notwendig, damit bestimmte Funktionen der Website funktionieren (essenziell). Andere Cookies werden nur mit Ihrer ausdrücklichen Einwilligung gesetzt (Statistik, Marketing).",
+      "cookiesP3": "Sie können Ihre Cookie-Einstellungen jederzeit über den \"Cookie-Einstellungen\"-Link im Footer dieser Seite ändern."
+    },
+    "s4": {
+      "title": "4. Ihre Rechte",
+      "intro": "Sie haben jederzeit das Recht auf:",
+      "rights": [
+        "Auskunft über Ihre gespeicherten personenbezogenen Daten",
+        "Berichtigung unrichtiger Daten",
+        "Löschung Ihrer Daten (Recht auf Vergessenwerden)",
+        "Einschränkung der Verarbeitung",
+        "Datenübertragbarkeit",
+        "Widerspruch gegen die Verarbeitung"
+      ],
+      "outro": "Zur Ausübung dieser Rechte kontaktieren Sie uns bitte unter den oben angegebenen Kontaktdaten."
+    },
+    "s5": {
+      "title": "5. Dauer der Datenspeicherung",
+      "text": "Wir speichern Ihre personenbezogenen Daten nur so lange, wie dies zur Erfüllung der Zwecke erforderlich ist, für die sie erhoben wurden, oder wie es gesetzliche Aufbewahrungsfristen vorsehen."
+    },
+    "s6": {
+      "title": "6. Beschwerderecht",
+      "text": "Sie haben das Recht, sich bei einer Aufsichtsbehörde zu beschweren. Zuständige Aufsichtsbehörde in datenschutzrechtlichen Fragen ist die Landesdatenschutzbeauftragte der Bundesrepublik Deutschland."
+    },
+    "s7": {
+      "title": "7. Änderungen dieser Datenschutzerklärung",
+      "text": "Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen.",
+      "date": "Stand: Februar 2026"
+    }
+  },
+  "impressum": {
+    "title": "Impressum",
+    "translationNote": "This is a translation for information purposes only. The German version is legally binding.",
+    "s1": {
+      "title": "Angaben gemäß § 5 TMG",
+      "country": "Deutschland"
+    },
+    "s2": {
+      "title": "Kontakt",
+      "phone": "Telefon:",
+      "email": "E-Mail:",
+      "website": "Website:"
+    },
+    "s3": {
+      "title": "Umsatzsteuer-ID",
+      "label": "Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:",
+      "placeholder": "[Bitte einfügen]",
+      "todo": "TODO: USt-IdNr. vom Steuerberater erfragen und hier eintragen"
+    },
+    "s4": {
+      "title": "Gewerbeanmeldung",
+      "text": "Die Gewerbeanmeldung wurde durchgeführt von:",
+      "authority": "Stadt Essen"
+    },
+    "s5": {
+      "title": "Streitschlichtung",
+      "p1": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:",
+      "p2": "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+    },
+    "s6": {
+      "title": "Haftung für Inhalte",
+      "p1": "Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.",
+      "p2": "Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen."
+    },
+    "s7": {
+      "title": "Haftung für Links",
+      "p1": "Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich."
+    },
+    "s8": {
+      "title": "Urheberrecht",
+      "p1": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers."
+    },
+    "s9": {
+      "title": "Bildnachweise",
+      "p1": "Die verwendeten Bilder sind entweder Eigentum des Hotel Rutherbach oder unterliegen den jeweiligen Lizenzbedingungen der Bildquellen.",
+      "todo": "TODO: Bei Verwendung von Stock-Fotos oder Fremdbildern entsprechende Quellenangaben ergänzen"
+    }
+  },
+  "common": {
+    "backHome": "← Zurück zur Startseite",
+    "image": "Bild",
+    "imageAltSuffix": "- Bild {{number}}",
+    "imageFollows": "Bild folgt",
+    "previousImage": "Vorheriges Bild",
+    "nextImage": "Nächstes Bild",
+    "goToImage": "Zu Bild {{number}} springen"
+  }
+}

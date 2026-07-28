@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, Loader2, Send } from 'lucide-react'
@@ -8,14 +9,21 @@ import { roomsData, BREAKFAST_PRICE } from '../data/rooms'
 const WEB3FORMS_ACCESS_KEY = '8410f864-6c58-4d9e-96e1-57d2544a4eda'
 
 function ContactForm() {
+  const { t, i18n } = useTranslation()
+  const lng = i18n.language === 'en' ? 'en' : 'de'
   const [searchParams] = useSearchParams()
-  const preselectedRoom = searchParams.get('zimmer')
+  const preselectedParam = searchParams.get('zimmer')
+
+  // Vorauswahl per URL-Parameter: Match gegen Zimmer-ID oder (rückwärtskompatibel) deutschen Namen
+  const preselectedRoom = roomsData.find(
+    room => room.id === preselectedParam || room.name.de === preselectedParam
+  )
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     telefon: '',
-    zimmer: preselectedRoom || '',
+    zimmer: preselectedRoom ? preselectedRoom.id : '',
     anreise: '',
     abreise: '',
     gaeste: '1',
@@ -33,25 +41,25 @@ function ContactForm() {
     const newErrors = {}
     
     if (!data.name.trim()) {
-      newErrors.name = 'Bitte geben Sie Ihren Namen ein.'
+      newErrors.name = t('contact.errors.name')
     }
     
     if (!data.email.trim()) {
-      newErrors.email = 'Bitte geben Sie Ihre E-Mail-Adresse ein.'
+      newErrors.email = t('contact.errors.emailRequired')
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      newErrors.email = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.'
+      newErrors.email = t('contact.errors.emailInvalid')
     }
     
     if (!data.zimmer) {
-      newErrors.zimmer = 'Bitte wählen Sie einen Zimmertyp.'
+      newErrors.zimmer = t('contact.errors.room')
     }
     
     if (!data.nachricht.trim()) {
-      newErrors.nachricht = 'Bitte geben Sie eine Nachricht ein.'
+      newErrors.nachricht = t('contact.errors.message')
     }
     
     if (!data.dsgvo) {
-      newErrors.dsgvo = 'Bitte stimmen Sie der Datenspeicherung zu.'
+      newErrors.dsgvo = t('contact.errors.gdpr')
     }
 
     return newErrors
@@ -97,6 +105,9 @@ function ContactForm() {
 
     // Web3Forms API Call
     try {
+      const selectedRoom = roomsData.find(room => room.id === formData.zimmer)
+      const roomName = selectedRoom ? selectedRoom.name.de : formData.zimmer
+
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
@@ -105,12 +116,12 @@ function ContactForm() {
         },
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `Neue Anfrage: ${formData.zimmer} - ${formData.name}`,
+          subject: t('contact.mailSubject', { room: roomName, name: formData.name }),
           from_name: 'Hotel Rutherbach Website',
           name: formData.name,
           email: formData.email,
           telefon: formData.telefon,
-          zimmer: formData.zimmer,
+          zimmer: roomName,
           anreise: formData.anreise,
           abreise: formData.abreise,
           gaeste: formData.gaeste,
@@ -140,7 +151,7 @@ function ContactForm() {
         throw new Error(result.message || 'Form submission failed')
       }
     } catch (error) {
-      setErrors({ submit: 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder rufen Sie uns an: 0201 - 40 88 39 18' })
+      setErrors({ submit: t('contact.errors.submit') })
     } finally {
       setIsSubmitting(false)
     }
@@ -157,11 +168,11 @@ function ContactForm() {
           className="text-center mb-8 sm:mb-12"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
-            Kontakt & <span className="text-accent-dark">Anfrage</span>
+            {t('contact.title1')} <span className="text-accent-dark">{t('contact.titleAccent')}</span>
           </h2>
           <p className="text-gray-600 text-base sm:text-lg px-2 sm:px-0">
-            Senden Sie uns Ihre Anfrage – wir melden uns schnellstmöglich bei Ihnen. 
-            <span className="text-accent-dark font-semibold block sm:inline mt-2 sm:mt-0">Bei Direktbuchung über uns sparen Sie sich die Buchungsgebühren!</span>
+            {t('contact.subtitle')}{' '}
+            <span className="text-accent-dark font-semibold block sm:inline mt-2 sm:mt-0">{t('contact.directBookingNote')}</span>
           </p>
         </motion.div>
 
@@ -177,12 +188,12 @@ function ContactForm() {
               <div className="w-14 h-14 sm:w-16 sm:h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Check size={28} className="text-accent sm:w-8 sm:h-8" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Vielen Dank für Ihre Anfrage!</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">{t('contact.successTitle')}</h3>
               <p className="text-gray-300 text-sm sm:text-base mb-2">
-                Wir haben Ihre Nachricht erhalten und werden uns in Kürze bei Ihnen melden.
+                {t('contact.successText')}
               </p>
               <p className="text-gray-400 text-xs sm:text-sm">
-                Eine Bestätigung wurde an Ihre E-Mail-Adresse gesendet.
+                {t('contact.successConfirmation')}
               </p>
             </motion.div>
           ) : (
@@ -201,7 +212,7 @@ function ContactForm() {
                 {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                    Name <span className="text-accent-dark">*</span>
+                    {t('contact.labels.name')} <span className="text-accent-dark">*</span>
                   </label>
                   <input
                     type="text"
@@ -211,7 +222,7 @@ function ContactForm() {
                     onChange={handleChange}
                     onBlur={() => handleBlur('name')}
                     className={`w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 text-sm sm:text-base ${errors.name && touched.name ? 'border-red-500' : ''}`}
-                    placeholder="Ihr vollständiger Name"
+                    placeholder={t('contact.placeholders.name')}
                     aria-invalid={errors.name && touched.name ? 'true' : 'false'}
                     aria-describedby={errors.name && touched.name ? 'name-error' : undefined}
                   />
@@ -223,7 +234,7 @@ function ContactForm() {
                 {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                    E-Mail <span className="text-accent-dark">*</span>
+                    {t('contact.labels.email')} <span className="text-accent-dark">*</span>
                   </label>
                   <input
                     type="email"
@@ -233,7 +244,7 @@ function ContactForm() {
                     onChange={handleChange}
                     onBlur={() => handleBlur('email')}
                     className={`w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 text-sm sm:text-base ${errors.email && touched.email ? 'border-red-500' : ''}`}
-                    placeholder="ihre@email.de"
+                    placeholder={t('contact.placeholders.email')}
                     aria-invalid={errors.email && touched.email ? 'true' : 'false'}
                     aria-describedby={errors.email && touched.email ? 'email-error' : undefined}
                   />
@@ -245,7 +256,7 @@ function ContactForm() {
                 {/* Telefon */}
                 <div>
                   <label htmlFor="telefon" className="block text-sm font-medium text-gray-300 mb-2">
-                    Telefon <span className="text-gray-500">(optional)</span>
+                    {t('contact.labels.phone')} <span className="text-gray-500">{t('contact.labels.optional')}</span>
                   </label>
                   <input
                     type="tel"
@@ -254,14 +265,14 @@ function ContactForm() {
                     value={formData.telefon}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 text-sm sm:text-base"
-                    placeholder="0201 - 123456"
+                    placeholder={t('contact.placeholders.phone')}
                   />
                 </div>
 
                 {/* Zimmer */}
                 <div>
                   <label htmlFor="zimmer" className="block text-sm font-medium text-gray-300 mb-2">
-                    Gewünschter Zimmer-Typ <span className="text-accent-dark">*</span>
+                    {t('contact.labels.roomType')} <span className="text-accent-dark">*</span>
                   </label>
                   <select
                     id="zimmer"
@@ -273,10 +284,10 @@ function ContactForm() {
                     aria-invalid={errors.zimmer && touched.zimmer ? 'true' : 'false'}
                     aria-describedby={errors.zimmer && touched.zimmer ? 'zimmer-error' : undefined}
                   >
-                    <option value="">Bitte wählen</option>
+                    <option value="">{t('contact.selectRoom')}</option>
                     {roomsData.map(room => (
-                      <option key={room.id} value={room.name}>
-                        {room.name} (ab {room.price} €)
+                      <option key={room.id} value={room.id}>
+                        {room.name[lng]} ({t('rooms.fromPrice', { price: room.price })})
                       </option>
                     ))}
                   </select>
@@ -287,7 +298,7 @@ function ContactForm() {
 
                 {/* Anreise */}
                 <div>
-                  <label htmlFor="anreise" className="block text-sm font-medium text-gray-300 mb-2">Anreise</label>
+                  <label htmlFor="anreise" className="block text-sm font-medium text-gray-300 mb-2">{t('contact.labels.arrival')}</label>
                   <input
                     type="date"
                     id="anreise"
@@ -300,7 +311,7 @@ function ContactForm() {
 
                 {/* Abreise */}
                 <div>
-                  <label htmlFor="abreise" className="block text-sm font-medium text-gray-300 mb-2">Abreise</label>
+                  <label htmlFor="abreise" className="block text-sm font-medium text-gray-300 mb-2">{t('contact.labels.departure')}</label>
                   <input
                     type="date"
                     id="abreise"
@@ -313,7 +324,7 @@ function ContactForm() {
 
                 {/* Gäste */}
                 <div>
-                  <label htmlFor="gaeste" className="block text-sm font-medium text-gray-300 mb-2">Gästeanzahl</label>
+                  <label htmlFor="gaeste" className="block text-sm font-medium text-gray-300 mb-2">{t('contact.labels.guests')}</label>
                   <select
                     id="gaeste"
                     name="gaeste"
@@ -322,7 +333,7 @@ function ContactForm() {
                     className="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 text-sm sm:text-base"
                   >
                     {[1, 2, 3, 4, 5, 6].map(num => (
-                      <option key={num} value={num}>{num} {num === 1 ? 'Person' : 'Personen'}</option>
+                      <option key={num} value={num}>{t('contact.guests', { count: num })}</option>
                     ))}
                   </select>
                 </div>
@@ -331,7 +342,7 @@ function ContactForm() {
               {/* Nachricht */}
               <div className="mt-4 sm:mt-6">
                 <label htmlFor="nachricht" className="block text-sm font-medium text-gray-300 mb-2">
-                  Nachricht <span className="text-accent-dark">*</span>
+                  {t('contact.labels.message')} <span className="text-accent-dark">*</span>
                 </label>
                 <textarea
                   id="nachricht"
@@ -341,7 +352,7 @@ function ContactForm() {
                   onChange={handleChange}
                   onBlur={() => handleBlur('nachricht')}
                   className={`w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-accent focus:ring-1 focus:ring-accent transition-colors duration-200 resize-none text-sm sm:text-base ${errors.nachricht && touched.nachricht ? 'border-red-500' : ''}`}
-                  placeholder="Ihre Nachricht oder besondere Wünsche..."
+                  placeholder={t('contact.placeholders.message')}
                   aria-invalid={errors.nachricht && touched.nachricht ? 'true' : 'false'}
                   aria-describedby={errors.nachricht && touched.nachricht ? 'nachricht-error' : undefined}
                 />
@@ -364,9 +375,9 @@ function ContactForm() {
                     aria-invalid={errors.dsgvo && touched.dsgvo ? 'true' : 'false'}
                   />
                   <label htmlFor="dsgvo" className={`text-xs sm:text-sm ${errors.dsgvo && touched.dsgvo ? 'text-red-400' : 'text-gray-300'}`}>
-                    <span className="text-accent-dark">*</span> Ich stimme der Speicherung meiner Daten zu, damit das Hotel mich kontaktieren kann.{' '}
+                    <span className="text-accent-dark">*</span> {t('contact.gdprText')}{' '}
                     <a href="/datenschutz" className="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
-                      Datenschutzerklärung
+                      {t('contact.privacyLink')}
                     </a>
                   </label>
                 </div>
@@ -375,7 +386,7 @@ function ContactForm() {
               {/* Frühstück Hinweis */}
               <div className="mt-4 p-3 sm:p-4 bg-primary rounded-lg border border-accent/20">
                 <p className="text-gray-300 text-xs sm:text-sm">
-                  <span className="text-accent font-semibold">🍳 Frühstück:</span> {BREAKFAST_PRICE} € pro Nacht (optional)
+                  <span className="text-accent font-semibold">{t('contact.breakfastNote')}</span> {t('contact.breakfastNoteText', { price: BREAKFAST_PRICE })}
                 </p>
               </div>
 
@@ -396,12 +407,12 @@ function ContactForm() {
                   {isSubmitting ? (
                     <>
                       <Loader2 size={18} className="mr-2 animate-spin sm:w-5 sm:h-5" />
-                      Wird gesendet...
+                      {t('contact.sending')}
                     </>
                   ) : (
                     <>
                       <Send size={18} className="mr-2 sm:w-5 sm:h-5" />
-                      Anfrage senden
+                      {t('contact.submit')}
                     </>
                   )}
                 </button>
@@ -410,13 +421,12 @@ function ContactForm() {
               {/* Direktbuchung Hinweis */}
               <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-accent/10 border border-accent/20 rounded-lg">
                 <p className="text-gray-300 text-xs sm:text-sm text-center">
-                  <span className="text-accent font-semibold">💰 Spar-Tipp:</span> Bei Direktbuchung über unsere Website 
-                  sparen Sie sich die Buchungsgebühren externer Plattformen!
+                  <span className="text-accent font-semibold">{t('contact.savingsTip')}</span> {t('contact.savingsTipText')}
                 </p>
               </div>
 
               <p className="mt-3 sm:mt-4 text-center text-xs sm:text-sm text-gray-500">
-                <span className="text-accent-dark">*</span> Pflichtfelder
+                <span className="text-accent-dark">*</span> {t('contact.requiredFields')}
               </p>
             </motion.form>
           )}

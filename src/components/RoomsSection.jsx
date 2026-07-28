@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Users, Bed, Maximize, Check, ExternalLink } from 'lucide-react'
 import { roomsData } from '../data/rooms'
 
 function RoomsSection() {
+  const { t, i18n } = useTranslation()
+  const lng = i18n.language === 'en' ? 'en' : 'de'
   const [selectedRoom, setSelectedRoom] = useState(null)
 
   return (
@@ -18,12 +21,11 @@ function RoomsSection() {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
-            Unsere <span className="text-accent-dark">Zimmer</span>
+            {t('rooms.title1')} <span className="text-accent-dark">{t('rooms.titleAccent')}</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg px-2 sm:px-0">
-            Wählen Sie aus 10 individuell eingerichteten Zimmern und Apartments. 
-            Jedes Zimmer bietet Ihnen den Komfort für einen erholsamen Aufenthalt. 
-            <span className="text-accent-dark block sm:inline mt-2 sm:mt-0 font-semibold">Bei Direktbuchung sparen Sie sich die Buchungsgebühren!</span>
+            {t('rooms.subtitle')}{' '}
+            <span className="text-accent-dark block sm:inline mt-2 sm:mt-0 font-semibold">{t('rooms.directBookingNote')}</span>
           </p>
         </motion.div>
 
@@ -44,7 +46,7 @@ function RoomsSection() {
                 <div className="relative h-48 sm:h-48 overflow-hidden">
                   <img
                     src={room.image}
-                    alt={room.name}
+                    alt={room.name[lng]}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
                       e.target.style.display = 'none';
@@ -52,11 +54,11 @@ function RoomsSection() {
                     }}
                   />
                   <div className="hidden absolute inset-0 bg-gradient-to-br from-primary-light to-primary items-center justify-center">
-                    <span className="text-gray-500 text-sm">{room.name}</span>
+                    <span className="text-gray-500 text-sm">{room.name[lng]}</span>
                   </div>
                   <div className="absolute bottom-3 right-3">
                     <span className="px-3 py-1 bg-primary/90 text-white text-sm font-semibold rounded-full">
-                      ab {room.price} €
+                      {t('rooms.fromPrice', { price: room.price })}
                     </span>
                   </div>
                 </div>
@@ -64,21 +66,21 @@ function RoomsSection() {
                 {/* Content */}
                 <div className="p-4">
                   <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-accent-dark transition-colors">
-                    {room.name}
+                    {room.name[lng]}
                   </h3>
                   <p className="text-gray-400 text-sm mb-3 line-clamp-2">
-                    {room.description}
+                    {room.description[lng]}
                   </p>
                   
                   {/* Quick Info */}
                   <div className="flex items-center space-x-4 text-xs sm:text-sm text-gray-400">
                     <div className="flex items-center space-x-1">
                       <Users size={14} />
-                      <span>bis {room.maxGuests}</span>
+                      <span>{t('rooms.upToGuests', { count: room.maxGuests })}</span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <Maximize size={14} />
-                      <span>{room.size}</span>
+                      <span>{room.size[lng]}</span>
                     </div>
                   </div>
                 </div>
@@ -110,7 +112,7 @@ function RoomsSection() {
               <button
                 onClick={() => setSelectedRoom(null)}
                 className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors"
-                aria-label="Schließen"
+                aria-label={t('rooms.close')}
               >
                 <X size={20} className="sm:w-6 sm:h-6" />
               </button>
@@ -119,7 +121,7 @@ function RoomsSection() {
               <div className="relative h-48 sm:h-64 lg:h-80 overflow-hidden">
                 <img
                   src={selectedRoom.image}
-                  alt={selectedRoom.name}
+                  alt={selectedRoom.name[lng]}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -129,45 +131,45 @@ function RoomsSection() {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                   <div>
                     <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">
-                      {selectedRoom.name}
+                      {selectedRoom.name[lng]}
                     </h3>
                   </div>
                   <div className="mt-3 sm:mt-0 text-left sm:text-right">
-                    <p className="text-2xl sm:text-3xl font-bold text-accent">ab {selectedRoom.price} €</p>
-                    <p className="text-gray-400 text-xs sm:text-sm">pro Nacht</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-accent">{t('rooms.fromPrice', { price: selectedRoom.price })}</p>
+                    <p className="text-gray-400 text-xs sm:text-sm">{t('rooms.perNight')}</p>
                   </div>
                 </div>
 
-                <p className="text-gray-300 text-base sm:text-lg mb-6">{selectedRoom.description}</p>
+                <p className="text-gray-300 text-base sm:text-lg mb-6">{selectedRoom.description[lng]}</p>
 
                 {/* Details Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6">
                   <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
                     <Maximize className="text-accent flex-shrink-0" size={20} />
                     <div>
-                      <p className="text-gray-400 text-xs sm:text-sm">Größe</p>
-                      <p className="text-white font-semibold text-sm sm:text-base">{selectedRoom.size}</p>
+                      <p className="text-gray-400 text-xs sm:text-sm">{t('rooms.size')}</p>
+                      <p className="text-white font-semibold text-sm sm:text-base">{selectedRoom.size[lng]}</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
                     <Users className="text-accent flex-shrink-0" size={20} />
                     <div>
-                      <p className="text-gray-400 text-xs sm:text-sm">Max. Gäste</p>
-                      <p className="text-white font-semibold text-sm sm:text-base">{selectedRoom.maxGuests} Personen</p>
+                      <p className="text-gray-400 text-xs sm:text-sm">{t('rooms.maxGuests')}</p>
+                      <p className="text-white font-semibold text-sm sm:text-base">{t('rooms.guests', { count: selectedRoom.maxGuests })}</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
                     <Bed className="text-accent flex-shrink-0" size={20} />
                     <div>
-                      <p className="text-gray-400 text-xs sm:text-sm">Betten</p>
-                      <p className="text-white font-semibold text-sm sm:text-base">{selectedRoom.beds}</p>
+                      <p className="text-gray-400 text-xs sm:text-sm">{t('rooms.beds')}</p>
+                      <p className="text-white font-semibold text-sm sm:text-base">{selectedRoom.beds[lng]}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Amenities */}
                 <div className="mb-6 sm:mb-8">
-                  <h4 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Ausstattung</h4>
+                  <h4 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">{t('rooms.amenitiesTitle')}</h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedRoom.amenities.map((amenity) => (
                       <span
@@ -175,7 +177,7 @@ function RoomsSection() {
                         className="flex items-center space-x-1 px-2 sm:px-3 py-1.5 sm:py-2 bg-primary rounded-lg text-gray-300 text-xs sm:text-sm border border-gray-700"
                       >
                         <Check size={12} className="text-accent sm:w-4 sm:h-4" />
-                        <span>{amenity}</span>
+                        <span>{t(`amenities.${amenity}`)}</span>
                       </span>
                     ))}
                   </div>
@@ -189,7 +191,7 @@ function RoomsSection() {
                   className="btn-primary w-full text-base sm:text-lg py-3 sm:py-4 inline-flex items-center justify-center"
                 >
                   <ExternalLink size={20} className="mr-2" />
-                  Jetzt buchen
+                  {t('rooms.bookNow')}
                 </a>
               </div>
             </motion.div>

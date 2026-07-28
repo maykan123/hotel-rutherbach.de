@@ -1,8 +1,11 @@
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Home, Search } from 'lucide-react'
 
 function NotFound() {
+  const { t } = useTranslation()
+
   return (
     <div className="pt-20 min-h-screen bg-white flex items-center justify-center">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
@@ -23,12 +26,11 @@ function NotFound() {
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Seite nicht gefunden
+              {t('notFound.title')}
             </h1>
 
             <p className="text-gray-300 text-lg mb-8">
-              Die von Ihnen gesuchte Seite existiert leider nicht. 
-              Vielleicht wurde sie verschoben oder gelöscht.
+              {t('notFound.description')}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -37,14 +39,14 @@ function NotFound() {
                 className="btn-primary inline-flex items-center"
               >
                 <Home size={20} className="mr-2" />
-                Zurück zur Startseite
+                {t('notFound.backHome')}
               </Link>
 
               <Link
                 to="/kontakt"
                 className="btn-secondary"
               >
-                Kontakt aufnehmen
+                {t('notFound.contactUs')}
               </Link>
             </div>
           </div>
@@ -56,26 +58,26 @@ function NotFound() {
             transition={{ delay: 0.3, duration: 0.5 }}
             className="mt-12"
           >
-            <p className="text-gray-600 mb-4">Oder besuchen Sie eine dieser Seiten:</p>
+            <p className="text-gray-600 mb-4">{t('notFound.orVisit')}</p>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
               <Link to="/" className="text-accent-dark hover:underline">
-                Startseite
+                {t('nav.start')}
               </Link>
               <span className="text-gray-300">|</span>
               <a href="/#zimmer" className="text-accent-dark hover:underline">
-                Zimmer
+                {t('nav.zimmer')}
               </a>
               <span className="text-gray-300">|</span>
               <a href="/#kontakt" className="text-accent-dark hover:underline">
-                Kontakt
+                {t('nav.kontakt')}
               </a>
               <span className="text-gray-300">|</span>
               <Link to="/datenschutz" className="text-accent-dark hover:underline">
-                Datenschutz
+                {t('footer.privacy')}
               </Link>
               <span className="text-gray-300">|</span>
               <Link to="/impressum" className="text-accent-dark hover:underline">
-                Impressum
+                {t('footer.impressum')}
               </Link>
             </div>
           </motion.div>

@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { Heart, Home, Users, Calendar } from 'lucide-react'
 
 function AboutSection() {
+  const { t } = useTranslation()
+
   return (
     <section id="ueber-uns" className="py-24 sm:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,7 +20,7 @@ function AboutSection() {
             <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src="/images/uberuns.webp"
-                alt="Hotel Rutherbach Außenansicht"
+                alt={t('about.imageAlt')}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -31,8 +34,8 @@ function AboutSection() {
               className="absolute -bottom-4 sm:-bottom-6 right-4 sm:-right-6 blue-island p-4 sm:p-6"
             >
               <div className="text-center">
-                <p className="text-2xl sm:text-3xl font-bold text-accent">10</p>
-                <p className="text-gray-300 text-xs sm:text-sm">Komfortable Zimmer</p>
+                <p className="text-2xl sm:text-3xl font-bold text-accent">{t('about.statsValue')}</p>
+                <p className="text-gray-300 text-xs sm:text-sm">{t('about.statsLabel')}</p>
               </div>
             </motion.div>
           </motion.div>
@@ -47,46 +50,32 @@ function AboutSection() {
           >
             <div className="blue-island p-6 sm:p-8 lg:p-10">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6">
-                Willkommen im <span className="text-accent-dark">Hotel Rutherbach</span>
+                {t('about.title1')} <span className="text-accent-dark">{t('about.titleAccent')}</span>
               </h2>
               
               <div className="space-y-3 sm:space-y-4 text-gray-300 text-base sm:text-lg leading-relaxed">
-                <p>
-                  Das Hotel Rutherbach liegt idyllisch direkt an der Ruhr in Essen-Kettwig. 
-                  Seit vielen Jahren begrüßen wir Gäste aus aller Welt und bieten Ihnen 
-                  einen erholsamen Aufenthalt in familiärer Atmosphäre.
-                </p>
-                <p>
-                  Unser Haus vereint die Vorteile einer ruhigen Lage am Ruhrtal mit der 
-                  Nähe zum historischen Stadtkern von Kettwig. Egal ob Sie geschäftlich 
-                  unterwegs sind oder Urlaub machen – bei uns finden Sie die perfekte 
-                  Unterkunft.
-                </p>
-                <p>
-                  Jedes unserer Zimmer ist individuell eingerichtet und bietet Ihnen 
-                  alle Annehmlichkeiten für einen komfortablen Aufenthalt. Starten Sie 
-                  den Tag mit einem reichhaltigen Frühstücksbuffet und genießen Sie 
-                  den Blick auf die Ruhr.
-                </p>
+                <p>{t('about.p1')}</p>
+                <p>{t('about.p2')}</p>
+                <p>{t('about.p3')}</p>
               </div>
 
               {/* Features */}
               <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
                   <Heart className="text-accent flex-shrink-0" size={20} />
-                  <span className="text-white text-sm sm:text-base">Familiäre Atmosphäre</span>
+                  <span className="text-white text-sm sm:text-base">{t('about.features.family')}</span>
                 </div>
                 <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
                   <Home className="text-accent flex-shrink-0" size={20} />
-                  <span className="text-white text-sm sm:text-base">Direkt an der Ruhr</span>
+                  <span className="text-white text-sm sm:text-base">{t('about.features.river')}</span>
                 </div>
                 <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
                   <Users className="text-accent flex-shrink-0" size={20} />
-                  <span className="text-white text-sm sm:text-base">Persönlicher Service</span>
+                  <span className="text-white text-sm sm:text-base">{t('about.features.service')}</span>
                 </div>
                 <div className="flex items-center space-x-3 p-3 sm:p-4 bg-primary rounded-lg border border-gray-700">
                   <Calendar className="text-accent flex-shrink-0" size={20} />
-                  <span className="text-white text-sm sm:text-base">Wird derzeit umfassend revitalisiert</span>
+                  <span className="text-white text-sm sm:text-base">{t('about.features.renovation')}</span>
                 </div>
               </div>
             </div>

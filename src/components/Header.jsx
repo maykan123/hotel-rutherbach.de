@@ -1,17 +1,50 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { id: 'start', label: 'Startseite' },
-  { id: 'ueber-uns', label: 'Über uns' },
-  { id: 'zimmer', label: 'Zimmer' },
-  { id: 'fruehstueck', label: 'Frühstück' },
-  { id: 'lage', label: 'Lage' },
-  { id: 'kontakt', label: 'Kontakt' },
+  { id: 'start' },
+  { id: 'ueber-uns' },
+  { id: 'zimmer' },
+  { id: 'fruehstueck' },
+  { id: 'lage' },
+  { id: 'kontakt' },
 ]
 
+function LanguageSwitcher({ className = '' }) {
+  const { i18n, t } = useTranslation()
+
+  const languages = [
+    { code: 'de', flag: '🇩🇪', short: 'DE' },
+    { code: 'en', flag: '🇬🇧', short: 'EN' },
+  ]
+
+  return (
+    <div className={`flex items-center space-x-2 ${className}`} aria-label={t('langSwitcher.label')} role="group">
+      {languages.map((lang, index) => (
+        <span key={lang.code} className="flex items-center space-x-2">
+          {index > 0 && <span className="text-gray-600">|</span>}
+          <button
+            onClick={() => i18n.changeLanguage(lang.code)}
+            className={`px-1 py-1 text-sm font-medium transition-colors duration-200 rounded ${
+              i18n.language === lang.code
+                ? 'text-accent underline underline-offset-4'
+                : 'text-gray-400 hover:text-white'
+            }`}
+            aria-pressed={i18n.language === lang.code}
+            aria-label={`${t('langSwitcher.label')}: ${t(`langSwitcher.${lang.code}`)}`}
+          >
+            {lang.flag} {lang.short}
+          </button>
+        </span>
+      ))}
+    </div>
+  )
+}
+
 function Header() {
+  const { t } = useTranslation()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('start')
@@ -80,16 +113,17 @@ function Header() {
                   activeSection === link.id ? 'text-accent bg-accent/10' : 'text-white'
                 }`}
               >
-                {link.label}
+                {t(`nav.${link.id}`)}
               </button>
             ))}
+            <LanguageSwitcher className="ml-4" />
           </nav>
 
           {/* Mobile Menu Button */}
           <button
             className="lg:hidden p-2 text-white hover:text-accent transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? 'Menü schließen' : 'Menü öffnen'}
+            aria-label={isMobileMenuOpen ? t('nav.menuClose') : t('nav.menuOpen')}
             aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -118,9 +152,12 @@ function Header() {
                       : 'text-white hover:bg-white/5 hover:text-accent'
                   }`}
                 >
-                  {link.label}
+                  {t(`nav.${link.id}`)}
                 </button>
               ))}
+              <div className="px-4 py-3 border-t border-gray-700">
+                <LanguageSwitcher />
+              </div>
             </div>
           </motion.nav>
         )}

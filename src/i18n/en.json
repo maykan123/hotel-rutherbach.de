@@ -1,0 +1,327 @@
+{
+  "nav": {
+    "start": "Home",
+    "ueber-uns": "About us",
+    "zimmer": "Rooms",
+    "fruehstueck": "Breakfast",
+    "lage": "Location",
+    "kontakt": "Contact",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "langSwitcher": {
+    "label": "Sprache wechseln / Switch language",
+    "de": "Deutsch",
+    "en": "English"
+  },
+  "hero": {
+    "kicker": "Hotel in Essen-Kettwig",
+    "title1": "Welcome to",
+    "titleAccent": "Hotel Rutherbach",
+    "subtitle": "Comfort meets tranquillity right on the Ruhr",
+    "description": "Enjoy relaxing days in our comfortable rooms and apartments – with warm, personal service and a beautiful location in the Ruhr valley.",
+    "bookNow": "Book now",
+    "inquire": "Send an enquiry",
+    "directBookingBadge": "💰 Book directly with us and save the booking fees!",
+    "scrollDown": "Scroll down"
+  },
+  "about": {
+    "imageAlt": "Hotel Rutherbach exterior view",
+    "statsValue": "10",
+    "statsLabel": "Comfortable rooms",
+    "title1": "Welcome to",
+    "titleAccent": "Hotel Rutherbach",
+    "p1": "Hotel Rutherbach is idyllically situated right on the Ruhr in Essen-Kettwig. For many years we have welcomed guests from all over the world, offering them a relaxing stay in a family atmosphere.",
+    "p2": "Our house combines the benefits of a quiet location in the Ruhr valley with proximity to the historic town centre of Kettwig. Whether you are travelling on business or on holiday – you will find the perfect accommodation with us.",
+    "p3": "Each of our rooms is individually furnished and offers you all the amenities for a comfortable stay. Start your day with a generous breakfast buffet and enjoy the view of the Ruhr.",
+    "features": {
+      "family": "Family atmosphere",
+      "river": "Right on the Ruhr",
+      "service": "Personal service",
+      "renovation": "Currently undergoing comprehensive renovation"
+    }
+  },
+  "features": {
+    "title1": "Amenities &",
+    "titleAccent": "Service",
+    "subtitle": "To make you feel completely at home, we offer you all the amenities for a relaxing stay.",
+    "items": [
+      { "title": "High-speed Wi-Fi", "description": "Free Wi-Fi in all rooms and public areas" },
+      { "title": "Free parking", "description": "Ample parking directly at the hotel for all guests" },
+      { "title": "Smart TV & streaming", "description": "Smart TV with HD channels and streaming services in every room" },
+      { "title": "Daily service", "description": "Your room is freshly cleaned every day" },
+      { "title": "Breakfast", "description": "Generous breakfast buffet daily from 7:30 to 10:30 am" },
+      { "title": "Flexible times", "description": "Check-in from 3:00 pm, check-out until 11:00 am" },
+      { "title": "Top location", "description": "Right on the Ruhr, only 5 minutes to the town centre" },
+      { "title": "Non-smoking", "description": "All rooms are non-smoking rooms" },
+      { "title": "Luggage storage", "description": "Secure storage of your luggage before arrival or after departure" },
+      { "title": "Sparkling wine reception", "description": "A welcome glass of sparkling wine on arrival for a perfect start" },
+      { "title": "Wedding breakfast", "description": "A special breakfast experience for newlywed couples" },
+      { "title": "Beverage service", "description": "Cold drinks and snacks available around the clock" },
+      { "title": "Cyclists welcome", "description": "The ideal starting point for cycling tours along the Ruhr" },
+      { "title": "Lunch packages", "description": "Packed lunches for the road – perfect for cyclists" },
+      { "title": "Event room", "description": "Room hire for events including breakfast catering" },
+      { "title": "Late check-out", "description": "Later departure available on request" },
+      { "title": "Extra beds", "description": "Additional beds for children available on request" }
+    ]
+  },
+  "rooms": {
+    "title1": "Our",
+    "titleAccent": "Rooms",
+    "subtitle": "Choose from 10 individually furnished rooms and apartments. Every room offers you the comfort for a restful stay.",
+    "directBookingNote": "Book directly with us and save the booking fees!",
+    "fromPrice": "from €{{price}}",
+    "upToGuests": "up to {{count}}",
+    "perNight": "per night",
+    "size": "Size",
+    "maxGuests": "Max. guests",
+    "guests_one": "{{count}} person",
+    "guests_other": "{{count}} people",
+    "beds": "Beds",
+    "amenitiesTitle": "Amenities",
+    "bookNow": "Book now",
+    "close": "Close"
+  },
+  "amenities": {
+    "kitchen": "Kitchen",
+    "kitchenette": "Kitchenette",
+    "showerWc": "Shower/WC",
+    "smartTv": "Smart TV",
+    "hdChannels": "HD channels",
+    "streaming": "Streaming",
+    "wlan": "Wi-Fi",
+    "parking": "Parking",
+    "dailyService": "Daily service",
+    "twoRooms": "2 rooms"
+  },
+  "breakfast": {
+    "imageAlt": "Breakfast room",
+    "title1": "Start your day with a",
+    "titleAccent": "good breakfast",
+    "description": "Our generous breakfast buffet leaves nothing to be desired. Enjoy a perfect start to the day in our bright breakfast room. We place great value on the freshness and quality of our products.",
+    "priceNote": "Breakfast: €{{price}} per night",
+    "features": [
+      { "title": "Coffee & tea", "description": "Various types of coffee and tea" },
+      { "title": "Savoury", "description": "Cold cuts, cheese, egg dishes" },
+      { "title": "Sweet", "description": "Bread rolls, muesli, yoghurt" },
+      { "title": "Times", "description": "Daily: 7:30 – 10:30 am" }
+    ]
+  },
+  "location": {
+    "title1": "Perfect location in",
+    "titleAccent": "Essen-Kettwig",
+    "description": "Hotel Rutherbach is idyllically situated right on the Ruhr, with a wonderful view of the Ruhr valley. Enjoy the peace and nature while still being only a few minutes from the town centre.",
+    "features": [
+      { "title": "Right on the Ruhr", "description": "Ruhr promenade right outside the door – ideal for walks and jogging" },
+      { "title": "Historic town centre", "description": "Only a 5-minute walk to the picturesque old town of Kettwig" },
+      { "title": "Good connections", "description": "Quick access to the A52 and A40 – Essen city centre in 15 minutes" },
+      { "title": "Public transport", "description": "Bus line directly at the hotel, Kettwig S-Bahn station a 10-minute walk" }
+    ],
+    "showOnMaps": "Show on Google Maps",
+    "mapTitle": "Hotel Rutherbach on Google Maps",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "breakfast": "Breakfast",
+    "addressTitle": "Address",
+    "phoneLabel": "Phone:"
+  },
+  "contact": {
+    "title1": "Contact &",
+    "titleAccent": "Enquiry",
+    "subtitle": "Send us your enquiry – we will get back to you as soon as possible.",
+    "directBookingNote": "Book directly with us and save the booking fees!",
+    "successTitle": "Thank you for your enquiry!",
+    "successText": "We have received your message and will get back to you shortly.",
+    "successConfirmation": "A confirmation has been sent to your email address.",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "optional": "(optional)",
+      "roomType": "Preferred room type",
+      "arrival": "Arrival",
+      "departure": "Departure",
+      "guests": "Number of guests",
+      "message": "Message"
+    },
+    "placeholders": {
+      "name": "Your full name",
+      "email": "your@email.com",
+      "phone": "+49 201 123456",
+      "message": "Your message or special requests..."
+    },
+    "selectRoom": "Please select",
+    "guests_one": "{{count}} person",
+    "guests_other": "{{count}} people",
+    "gdprText": "I agree to my data being stored so that the hotel can contact me.",
+    "privacyLink": "Privacy policy",
+    "breakfastNote": "🍳 Breakfast:",
+    "breakfastNoteText": "€{{price}} per night (optional)",
+    "sending": "Sending...",
+    "submit": "Send enquiry",
+    "savingsTip": "💰 Savings tip:",
+    "savingsTipText": "Book directly through our website and save the booking fees of external platforms!",
+    "requiredFields": "Required fields",
+    "errors": {
+      "name": "Please enter your name.",
+      "emailRequired": "Please enter your email address.",
+      "emailInvalid": "Please enter a valid email address.",
+      "room": "Please select a room type.",
+      "message": "Please enter a message.",
+      "gdpr": "Please agree to the storage of your data.",
+      "submit": "An error occurred. Please try again later or call us: +49 201 40883918"
+    },
+    "mailSubject": "New enquiry: {{room}} - {{name}}"
+  },
+  "footer": {
+    "contactTitle": "Contact",
+    "checkInOut": "Check-in from 3:00 pm · Check-out until 11:00 am",
+    "quickLinks": "Quick links",
+    "legal": "Legal",
+    "impressum": "Legal notice",
+    "privacy": "Privacy policy",
+    "rights": "© {{year}} Hotel Rutherbach. All rights reserved."
+  },
+  "cookies": {
+    "title": "Privacy settings",
+    "description": "We use cookies to offer you the best possible experience on our website. You can adjust your preferences or accept all cookies. For more information, please see our",
+    "privacyLink": "privacy policy",
+    "settings": "Settings",
+    "essentialOnly": "Essential only",
+    "acceptAll": "Accept all",
+    "modalTitle": "Cookie settings",
+    "close": "Close",
+    "required": "Required",
+    "cancel": "Cancel",
+    "saveSelection": "Save selection",
+    "categories": {
+      "essential": {
+        "name": "Essential",
+        "description": "Cookies required for the basic functionality of the website."
+      },
+      "statistics": {
+        "name": "Statistics",
+        "description": "Help us understand how visitors interact with the website."
+      },
+      "marketing": {
+        "name": "Marketing",
+        "description": "Used to show visitors relevant advertising."
+      }
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "Unfortunately, the page you are looking for does not exist. It may have been moved or deleted.",
+    "backHome": "Back to homepage",
+    "contactUs": "Get in touch",
+    "orVisit": "Or visit one of these pages:"
+  },
+  "privacy": {
+    "title1": "Privacy",
+    "titleAccent": "Policy",
+    "translationNote": "This is a translation for information purposes only. The German version is legally binding.",
+    "s1": {
+      "title": "1. Data protection at a glance",
+      "subtitle": "General information",
+      "text": "The following information provides a simple overview of what happens to your personal data when you visit this website. Personal data is any data that can be used to identify you personally."
+    },
+    "s2": {
+      "title": "2. Controller",
+      "phone": "Phone:",
+      "email": "Email:"
+    },
+    "s3": {
+      "title": "3. Data collection on this website",
+      "contactFormTitle": "Contact form",
+      "contactFormP1": "If you send us enquiries via the contact form, the information you provide in the enquiry form, including the contact details you enter there, will be stored by us for the purpose of processing the enquiry and in the event of follow-up questions. We will not pass on this data without your consent.",
+      "contactFormP2": "This data is processed on the basis of Art. 6 (1) lit. b GDPR, insofar as your enquiry is related to the performance of a contract or is necessary for the implementation of pre-contractual measures.",
+      "cookiesTitle": "Cookies",
+      "cookiesP1": "Our website uses cookies. These are small text files that your web browser stores on your device. Cookies help us to make our website more user-friendly, effective and secure.",
+      "cookiesP2": "Some cookies are technically necessary for certain functions of the website to work (essential). Other cookies are only set with your explicit consent (statistics, marketing).",
+      "cookiesP3": "You can change your cookie settings at any time via the \"Cookie settings\" link in the footer of this page."
+    },
+    "s4": {
+      "title": "4. Your rights",
+      "intro": "You have the right at any time to:",
+      "rights": [
+        "Access your stored personal data",
+        "Rectification of inaccurate data",
+        "Erasure of your data (right to be forgotten)",
+        "Restriction of processing",
+        "Data portability",
+        "Object to the processing"
+      ],
+      "outro": "To exercise these rights, please contact us using the contact details provided above."
+    },
+    "s5": {
+      "title": "5. Duration of data storage",
+      "text": "We only store your personal data for as long as is necessary to fulfil the purposes for which it was collected, or as required by statutory retention periods."
+    },
+    "s6": {
+      "title": "6. Right to lodge a complaint",
+      "text": "You have the right to lodge a complaint with a supervisory authority. The competent supervisory authority for data protection matters is the State Data Protection Commissioner of the Federal Republic of Germany."
+    },
+    "s7": {
+      "title": "7. Changes to this privacy policy",
+      "text": "We reserve the right to adapt this privacy policy so that it always complies with current legal requirements or to reflect changes to our services in the privacy policy.",
+      "date": "Last updated: February 2026"
+    }
+  },
+  "impressum": {
+    "title": "Legal Notice",
+    "translationNote": "This is a translation for information purposes only. The German version is legally binding.",
+    "s1": {
+      "title": "Information pursuant to § 5 TMG (German Telemedia Act)",
+      "country": "Germany"
+    },
+    "s2": {
+      "title": "Contact",
+      "phone": "Phone:",
+      "email": "Email:",
+      "website": "Website:"
+    },
+    "s3": {
+      "title": "VAT ID",
+      "label": "VAT identification number pursuant to § 27 a of the German VAT Act:",
+      "placeholder": "[To be added]",
+      "todo": "TODO: Request VAT ID from the tax advisor and enter it here"
+    },
+    "s4": {
+      "title": "Business registration",
+      "text": "The business registration was carried out by:",
+      "authority": "City of Essen"
+    },
+    "s5": {
+      "title": "Dispute resolution",
+      "p1": "The European Commission provides a platform for online dispute resolution (ODR):",
+      "p2": "We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board."
+    },
+    "s6": {
+      "title": "Liability for content",
+      "p1": "As a service provider, we are responsible for our own content on these pages in accordance with § 7 (1) TMG under general law. However, according to §§ 8 to 10 TMG, we as a service provider are not obliged to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.",
+      "p2": "Obligations to remove or block the use of information under general law remain unaffected. However, liability in this regard is only possible from the time we become aware of a specific legal violation. Upon becoming aware of such legal violations, we will remove this content immediately."
+    },
+    "s7": {
+      "title": "Liability for links",
+      "p1": "Our website contains links to external third-party websites over whose content we have no influence. We therefore cannot accept any liability for this third-party content. The respective provider or operator of the linked pages is always responsible for their content."
+    },
+    "s8": {
+      "title": "Copyright",
+      "p1": "The content and works created by the site operators on these pages are subject to German copyright law. Duplication, editing, distribution and any kind of use outside the limits of copyright law require the written consent of the respective author or creator."
+    },
+    "s9": {
+      "title": "Image credits",
+      "p1": "The images used are either the property of Hotel Rutherbach or are subject to the respective licence terms of the image sources.",
+      "todo": "TODO: If stock photos or third-party images are used, add the corresponding source references"
+    }
+  },
+  "common": {
+    "backHome": "← Back to homepage",
+    "image": "Image",
+    "imageAltSuffix": "- image {{number}}",
+    "imageFollows": "Image coming soon",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "goToImage": "Go to image {{number}}"
+  }
+}

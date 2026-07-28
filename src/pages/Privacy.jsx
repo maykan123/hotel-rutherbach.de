@@ -1,7 +1,11 @@
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
 function Privacy() {
+  const { t, i18n } = useTranslation()
+  const rights = t('privacy.s4.rights', { returnObjects: true })
+
   return (
     <div className="pt-20">
       <section className="py-20 bg-primary-light">
@@ -12,119 +16,104 @@ function Privacy() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl font-bold text-white mb-8">
-              Datenschutz<span className="text-accent">erklärung</span>
+              {t('privacy.title1')}<span className="text-accent">{t('privacy.titleAccent')}</span>
             </h1>
+
+            {i18n.language === 'en' && (
+              <p className="text-gray-500 text-sm italic mb-8 border-l-2 border-gray-600 pl-3">
+                {t('privacy.translationNote')}
+              </p>
+            )}
 
             <div className="prose prose-invert max-w-none">
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">1. Datenschutz auf einen Blick</h2>
-                <h3 className="text-xl font-medium text-accent mb-3">Allgemeine Hinweise</h3>
+                <h2 className="text-2xl font-semibold text-white mb-4">{t('privacy.s1.title')}</h2>
+                <h3 className="text-xl font-medium text-accent mb-3">{t('privacy.s1.subtitle')}</h3>
                 <p className="text-gray-300 mb-4">
-                  Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen 
-                  Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, 
-                  mit denen Sie persönlich identifiziert werden können.
+                  {t('privacy.s1.text')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">2. Verantwortlicher</h2>
+                <h2 className="text-2xl font-semibold text-white mb-4">{t('privacy.s2.title')}</h2>
                 <div className="bg-primary p-6 rounded-lg border border-gray-700 mb-4">
                   <p className="text-gray-300">
                     <strong className="text-white">Makyan Saeed</strong><br />
                     HOTEL RUTHERBACH<br />
                     Ruhrtalstraße 215 - 217<br />
                     D-45219 Essen-Kettwig<br /><br />
-                    Telefon: 0201 - 40 88 39 18<br />
-                    E-Mail: info@hotel-rutherbach.de
+                    {t('privacy.s2.phone')} 0201 - 40 88 39 18<br />
+                    {t('privacy.s2.email')} info@hotel-rutherbach.de
                   </p>
                 </div>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">3. Datenerfassung auf dieser Website</h2>
+                <h2 className="text-2xl font-semibold text-white mb-4">{t('privacy.s3.title')}</h2>
                 
-                <h3 className="text-xl font-medium text-accent mb-3">Kontaktformular</h3>
+                <h3 className="text-xl font-medium text-accent mb-3">{t('privacy.s3.contactFormTitle')}</h3>
                 <p className="text-gray-300 mb-4">
-                  Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem 
-                  Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung 
-                  der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben 
-                  wir nicht ohne Ihre Einwilligung weiter.
+                  {t('privacy.s3.contactFormP1')}
                 </p>
                 <p className="text-gray-300 mb-4">
-                  Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, 
-                  sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung 
-                  vorvertraglicher Maßnahmen erforderlich ist.
+                  {t('privacy.s3.contactFormP2')}
                 </p>
 
-                <h3 className="text-xl font-medium text-accent mb-3">Cookies</h3>
+                <h3 className="text-xl font-medium text-accent mb-3">{t('privacy.s3.cookiesTitle')}</h3>
                 <p className="text-gray-300 mb-4">
-                  Unsere Website verwendet Cookies. Das sind kleine Textdateien, die Ihr Webbrowser auf Ihrem 
-                  Endgerät speichert. Cookies helfen uns dabei, unser Angebot nutzerfreundlicher, effektiver 
-                  und sicherer zu machen.
+                  {t('privacy.s3.cookiesP1')}
                 </p>
                 <p className="text-gray-300 mb-4">
-                  Einige Cookies sind technisch notwendig, damit bestimmte Funktionen der Website funktionieren 
-                  (essenziell). Andere Cookies werden nur mit Ihrer ausdrücklichen Einwilligung gesetzt 
-                  (Statistik, Marketing).
+                  {t('privacy.s3.cookiesP2')}
                 </p>
                 <p className="text-gray-300 mb-4">
-                  Sie können Ihre Cookie-Einstellungen jederzeit über den "Cookie-Einstellungen"-Link 
-                  im Footer dieser Seite ändern.
+                  {t('privacy.s3.cookiesP3')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">4. Ihre Rechte</h2>
+                <h2 className="text-2xl font-semibold text-white mb-4">{t('privacy.s4.title')}</h2>
                 <p className="text-gray-300 mb-4">
-                  Sie haben jederzeit das Recht auf:
+                  {t('privacy.s4.intro')}
                 </p>
                 <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4">
-                  <li>Auskunft über Ihre gespeicherten personenbezogenen Daten</li>
-                  <li>Berichtigung unrichtiger Daten</li>
-                  <li>Löschung Ihrer Daten (Recht auf Vergessenwerden)</li>
-                  <li>Einschränkung der Verarbeitung</li>
-                  <li>Datenübertragbarkeit</li>
-                  <li>Widerspruch gegen die Verarbeitung</li>
+                  {rights.map((right) => (
+                    <li key={right}>{right}</li>
+                  ))}
                 </ul>
                 <p className="text-gray-300 mb-4">
-                  Zur Ausübung dieser Rechte kontaktieren Sie uns bitte unter den oben angegebenen Kontaktdaten.
+                  {t('privacy.s4.outro')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">5. Dauer der Datenspeicherung</h2>
+                <h2 className="text-2xl font-semibold text-white mb-4">{t('privacy.s5.title')}</h2>
                 <p className="text-gray-300 mb-4">
-                  Wir speichern Ihre personenbezogenen Daten nur so lange, wie dies zur Erfüllung der 
-                  Zwecke erforderlich ist, für die sie erhoben wurden, oder wie es gesetzliche 
-                  Aufbewahrungsfristen vorsehen.
+                  {t('privacy.s5.text')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">6. Beschwerderecht</h2>
+                <h2 className="text-2xl font-semibold text-white mb-4">{t('privacy.s6.title')}</h2>
                 <p className="text-gray-300 mb-4">
-                  Sie haben das Recht, sich bei einer Aufsichtsbehörde zu beschweren. Zuständige 
-                  Aufsichtsbehörde in datenschutzrechtlichen Fragen ist die Landesdatenschutzbeauftragte 
-                  der Bundesrepublik Deutschland.
+                  {t('privacy.s6.text')}
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">7. Änderungen dieser Datenschutzerklärung</h2>
+                <h2 className="text-2xl font-semibold text-white mb-4">{t('privacy.s7.title')}</h2>
                 <p className="text-gray-300 mb-4">
-                  Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den 
-                  aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen 
-                  in der Datenschutzerklärung umzusetzen.
+                  {t('privacy.s7.text')}
                 </p>
                 <p className="text-gray-300">
-                  Stand: Februar 2026
+                  {t('privacy.s7.date')}
                 </p>
               </section>
             </div>
 
             <div className="mt-12 pt-8 border-t border-gray-700">
               <Link to="/" className="text-accent hover:underline">
-                ← Zurück zur Startseite
+                {t('common.backHome')}
               </Link>
             </div>
           </motion.div>
